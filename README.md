@@ -17,20 +17,34 @@ This package requires a few installs. Sorry. Hopefully it's worth it. If all wor
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
 2. Install `imagemagick`:
 ```
 brew install imagemagick
 ```
-3. Install `phantomJS`
+
+3. Install `node`
+```
+brew install node
+```
+
+4. Install `browserify`
+```
+npm install -g browserify
+```
+
+5. Install `phantomJS`
 ```
 brew tap homebrew/cask
 brew cask install phantomjs
 ```
-4. Install `R`:
+
+6. Install `R`:
 ```
 brew install r
 ```
-5. Install `webshot`
+
+7. Install `webshot`
 ```
 Rscript installPkgs.R "webshot"
 ```
