@@ -1,5 +1,5 @@
 # `treeplotter`
-I didn't like any of the available methods for tree plotting in Python. This package aims to make this easier. It wraps the TreantJS library to plot python Tree objects and saves them to a rendered HTML file. This HTML file can then be optionally exported as a high-res PNG by wrapping Rs ``webshot`` package. It requires some installs, but after doing so you'll––ideally––never have to touch javascript or CSS. 
+Tree plotting is a nightmare in Python. This package aims to make this easier. It wraps the TreantJS library to plot python Tree objects and saves them to a rendered HTML file. This HTML file can then be optionally exported as a high-res PNG by wrapping Rs ``webshot`` package. It requires some installs, but after doing so you'll––ideally––never have to touch javascript or CSS. 
 
 ### Usage
 This library has `Node` and `Tree` classes in the `treeplotter.tree` module. `Node` objects (currently) store a value and a name (string or `None`). We can then specify the nodes children and parent. A `Tree` is then defined by a root. We can then write an image of this tree (rendered by TreantJS) to an HTML file and save it to PNG via webshot. See `Tutorial.md` to see how it is used. 
