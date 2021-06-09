@@ -4,6 +4,9 @@ I wasn't a huge fan of any of the available methods for tree plotting in Python.
 ### Usage
 This library has `Node` and `Tree` classes in the `treeplotter.tree` module. `Node` objects (currently) store a value and a name (string or `None`). We can then specify the nodes children and parent. A `Tree` is then defined by a root. We can then write an image of this tree (rendered by TreantJS) to an HTML file and save it to PNG via webshot. See `Tutorial.md` to see how it is used. 
 
+This package is used in the `decitala` package (see [here](https://github.com/Luke-Poeppel/decitala)) to make `FragmentTree` diagrams, like the following one:
+<img src="Prosodic_Tree.png" height="350" width="660" style="border: 2px solid">
+
 ### MacOS Installation
 **Disclaimer**
 I haven't tested this on anything other than MacOS (Big Sur). If you find this install works (or doesn't!) on other platforms, please file an issue or a Pull Request. 
