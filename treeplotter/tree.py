@@ -1,6 +1,128 @@
+class Node:
+	"""
+	A Node object stores an item and references its parent and children. In an Nary tree, a parent
+	may have any arbitrary number of children, but each child has only 1 parent.
+	"""
+	def __init__(self, value, name=None, **kwargs):
+		self.value = value
+		self.name = name
+		self.parent = None
+
+		self.children = set()
+
+	def __repr__(self):
+		return '<NODE: value={0}, name={1}>'.format(self.value, self.name)
+
+	def __hash__(self):
+		return hash(self.value)
+
+	def __eq__(self, other):
+		"""
+		Without this, you can add nodes with the same value to the set of children.
+		"""
+		return (self.value == other.value)
+
+	def __lt__(self, other):
+		return (self.value < other.value)
+
+	def __get__(self):
+		"""
+		TODO: index the node children?
+		"""
+		raise NotImplementedError
+
+	def add_child(self, child_node):
+		self.children.add(child_node)
+		return
+
+	def add_children(self, children_nodes=[]):
+		if type(children_nodes) != list:
+			raise TreeException('Nodes must be contained in a list.')
+
+		for this_child in children_nodes:
+			self.add_child(this_child)
+		return
+
+	def add_path_of_children(self, path, final_node_name):
+		"""
+		Adds a path of Nodes through ``self.children``.
+		"""
+		if path[0] != self.value:
+			raise TreeException("First value in the path must be self.value.")
+
+		curr = self
+		i = 1
+		while i < len(path):
+			check = curr.get_child_by_value(path[i])
+			if check is not None:
+				curr = check
+				i += 1
+			else:
+				if i == len(path) - 1:
+					child = NaryTree().Node(value=path[i], name=final_node_name)
+				else:
+					child = NaryTree().Node(value=path[i])
+
+				curr.add_child(child)
+				curr = child
+				i += 1
+
+		return
+
+	def remove_child(self, child_node):
+		if child_node.item.value not in self.children:
+			raise TreeException("This parent does not have that child!")
+		self.children.remove(child_node.item.value)
+		return
+
+	def remove_children(self, children_nodes):
+		for this_child in children_nodes:
+			try:
+				self.remove_child(this_child)
+			except KeyError:
+				raise TreeException("One of the values in children_nodes was not found.")
+		return
+
+	def get_child(self, node):
+		"""Given another Node, returns the node in the set of children with the same value."""
+		for this_child in self.children:
+			if this_child.value == node.value:
+				return this_child
+		else:
+			return None
+
+	def get_child_by_value(self, value):
+		for this_child in self.children:
+			if this_child.value == value:
+				return this_child
+		else:
+			return None
+
+	@property
+	def num_children(self) -> int:
+		return len(self.children)
+
+	@property
+	def has_children(self) -> bool:
+		return (self.num_children != 0)
+
+	def ordered_children(self):
+		"""Returns the children of a node in list format, ordered by value."""
+		return sorted([child for child in self.children])
+
+	def write_to_json(self):
+		"""Used in the Treant.js visualization of Fragment trees."""
+		net_children_data = []
+		for this_child in self.children:
+			data = {"info": {"name": this_child.name, "value": this_child.value}}
+			net_children_data.append(data)
+
+		out = {'info': {'name': self.name, 'value': self.value, 'children': net_children_data}}
+		return json.dumps(out)
+
 class Tree:
 	"""
-    Implementation of an NaryTree. 
+	Implementation of an NaryTree. 
 
 	Nodes are hashed by their value and are stored in a set. For demonstration, we will create the
 	following tree: (If a string appears next to a node value, this means the path from the root to
@@ -93,128 +215,6 @@ class Tree:
 	[[1.0], [0.5, 1.0, 3.0, 4.0], [0.5, 3.0, 2.0, 1.0], [1.0, 1.0, 0.5], [2.0]]
 	>>> # We can serialize an NaryTree with NaryTree.serialize()
 	"""
-	class Node:
-		"""
-		A Node object stores an item and references its parent and children. In an Nary tree, a parent
-		may have any arbitrary number of children, but each child has only 1 parent.
-		"""
-		def __init__(self, value, name=None, **kwargs):
-			self.value = value
-			self.name = name
-			self.parent = None
-
-			self.children = set()
-
-		def __repr__(self):
-			return '<NODE: value={0}, name={1}>'.format(self.value, self.name)
-
-		def __hash__(self):
-			return hash(self.value)
-
-		def __eq__(self, other):
-			"""
-			Without this, you can add nodes with the same value to the set of children.
-			"""
-			return (self.value == other.value)
-
-		def __lt__(self, other):
-			return (self.value < other.value)
-
-		def __get__(self):
-			"""
-			TODO: index the node children?
-			"""
-			raise NotImplementedError
-
-		def add_child(self, child_node):
-			self.children.add(child_node)
-			return
-
-		def add_children(self, children_nodes=[]):
-			if type(children_nodes) != list:
-				raise TreeException('Nodes must be contained in a list.')
-
-			for this_child in children_nodes:
-				self.add_child(this_child)
-			return
-
-		def add_path_of_children(self, path, final_node_name):
-			"""
-			Adds a path of Nodes through ``self.children``.
-			"""
-			if path[0] != self.value:
-				raise TreeException("First value in the path must be self.value.")
-
-			curr = self
-			i = 1
-			while i < len(path):
-				check = curr.get_child_by_value(path[i])
-				if check is not None:
-					curr = check
-					i += 1
-				else:
-					if i == len(path) - 1:
-						child = NaryTree().Node(value=path[i], name=final_node_name)
-					else:
-						child = NaryTree().Node(value=path[i])
-
-					curr.add_child(child)
-					curr = child
-					i += 1
-
-			return
-
-		def remove_child(self, child_node):
-			if child_node.item.value not in self.children:
-				raise TreeException("This parent does not have that child!")
-			self.children.remove(child_node.item.value)
-			return
-
-		def remove_children(self, children_nodes):
-			for this_child in children_nodes:
-				try:
-					self.remove_child(this_child)
-				except KeyError:
-					raise TreeException("One of the values in children_nodes was not found.")
-			return
-
-		def get_child(self, node):
-			"""Given another Node, returns the node in the set of children with the same value."""
-			for this_child in self.children:
-				if this_child.value == node.value:
-					return this_child
-			else:
-				return None
-
-		def get_child_by_value(self, value):
-			for this_child in self.children:
-				if this_child.value == value:
-					return this_child
-			else:
-				return None
-
-		@property
-		def num_children(self) -> int:
-			return len(self.children)
-
-		@property
-		def has_children(self) -> bool:
-			return (self.num_children != 0)
-
-		def ordered_children(self):
-			"""Returns the children of a node in list format, ordered by value."""
-			return sorted([child for child in self.children])
-
-		def write_to_json(self):
-			"""Used in the Treant.js visualization of Fragment trees."""
-			net_children_data = []
-			for this_child in self.children:
-				data = {"info": {"name": this_child.name, "value": this_child.value}}
-				net_children_data.append(data)
-
-			out = {'info': {'name': self.name, 'value': self.value, 'children': net_children_data}}
-			return json.dumps(out)
-
 	def __init__(self):
 		self.root = None
 
