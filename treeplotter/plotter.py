@@ -12,6 +12,7 @@ import json
 import sys
 import subprocess
 import shutil
+import tempfile
 
 from .tree import Tree
 
@@ -78,7 +79,8 @@ def create_tree_diagram(tree, save_path=None, verbose=False):
 
 	logger.info("-> Creating directory and writing tree to JSON...")
 	if save_path:
-		os.mkdir(save_path)
+		if not(os.path.isdir(save_path)):
+			os.mkdir(save_path)
 		os.chdir(save_path)
 		_prepare_docs_and_screenshot(save_path, serialized_tree=serialized, logger=logger)
 		logger.info("Done ✔")

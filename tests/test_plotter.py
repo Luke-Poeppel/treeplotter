@@ -1,6 +1,11 @@
+import tempfile
+import pytest
+import os
+
 from treeplotter.tree import Node, Tree
 from treeplotter.plotter import create_tree_diagram
 
+@pytest.fixture
 def tutorial_tree():
 	root = Node(value=1.0, name=None)
 
@@ -29,9 +34,17 @@ def tutorial_tree():
 	
 	return Tree(root=root)
 
-# import uuid
-# create_tree_diagram(
-#     tree=tutorial_tree(),
-#     save_path=f"/Users/lukepoeppel/treeplotter/tests/T/{uuid.uuid4().hex}",
-#     verbose=True
-# )
+def test_plotter(tutorial_tree):
+	with tempfile.TemporaryDirectory() as tmpdir:
+		create_tree_diagram(
+			tree=tutorial_tree,
+			save_path=tmpdir,
+			verbose=False
+		)
+		fcount = 0
+		for f in os.listdir(tmpdir):
+			fcount += 1
+		assert fcount == 11
+		assert os.path.isfile(tmpdir + "/tree.json")
+		assert os.path.isfile(tmpdir + "/index.html")
+		assert os.path.isfile(tmpdir + "/shot.png")
