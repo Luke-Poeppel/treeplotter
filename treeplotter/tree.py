@@ -1,13 +1,26 @@
+####################################################################################################
+# File:     tree.py
+# Purpose:  Simple Python NaryTree objects. 
+#
+# Author:   Luke Poeppel
+#
+# Location: Kent, 2021
+####################################################################################################
+class NodeException(Exception):
+	pass
+
+class TreeException(Exception):
+	pass
+
 class Node:
 	"""
-	A Node object stores an item and references its parent and children. In an Nary tree, a parent
+	A Node object stores an item and references to its parent and children. A parent
 	may have any arbitrary number of children, but each child has only 1 parent.
 	"""
 	def __init__(self, value, name=None, **kwargs):
 		self.value = value
 		self.name = name
 		self.parent = None
-
 		self.children = set()
 
 	def __repr__(self):
@@ -17,19 +30,10 @@ class Node:
 		return hash(self.value)
 
 	def __eq__(self, other):
-		"""
-		Without this, you can add nodes with the same value to the set of children.
-		"""
 		return (self.value == other.value)
 
 	def __lt__(self, other):
 		return (self.value < other.value)
-
-	def __get__(self):
-		"""
-		TODO: index the node children?
-		"""
-		raise NotImplementedError
 
 	def add_child(self, child_node):
 		self.children.add(child_node)
@@ -37,7 +41,7 @@ class Node:
 
 	def add_children(self, children_nodes=[]):
 		if type(children_nodes) != list:
-			raise TreeException('Nodes must be contained in a list.')
+			raise NodeException('Nodes must be contained in a list.')
 
 		for this_child in children_nodes:
 			self.add_child(this_child)
@@ -45,10 +49,10 @@ class Node:
 
 	def add_path_of_children(self, path, final_node_name):
 		"""
-		Adds a path of Nodes through ``self.children``.
+		Iterative solution. TODO: recursive. 
 		"""
 		if path[0] != self.value:
-			raise TreeException("First value in the path must be self.value.")
+			raise NodeException("First value in the path must be self.value.")
 
 		curr = self
 		i = 1
@@ -66,12 +70,11 @@ class Node:
 				curr.add_child(child)
 				curr = child
 				i += 1
-
 		return
 
 	def remove_child(self, child_node):
 		if child_node.item.value not in self.children:
-			raise TreeException("This parent does not have that child!")
+			raise NodeException("This parent does not have that child.")
 		self.children.remove(child_node.item.value)
 		return
 
@@ -80,7 +83,7 @@ class Node:
 			try:
 				self.remove_child(this_child)
 			except KeyError:
-				raise TreeException("One of the values in children_nodes was not found.")
+				raise NodeException("One of the values in children_nodes was not found.")
 		return
 
 	def get_child(self, node):
@@ -127,93 +130,6 @@ class Tree:
 	Nodes are hashed by their value and are stored in a set. For demonstration, we will create the
 	following tree: (If a string appears next to a node value, this means the path from the root to
 	that node is an encoded fragment.)
-
-	>>> root = Tree().Node(value = 1.0, name = None) # LEVEL 1
-	>>> c1 = Tree().Node(value = 0.5, name = None) # LEVEL 2
-	>>> c2 = Tree().Node(value = 1.0, name = None)
-	>>> c3 = Tree().Node(value = 3.0, name = 'A')
-	>>> c3.value
-	3.0
-	>>> gc1 = Tree().Node(value = 0.5, name = None) # LEVEL 3
-	>>> gc2 = Tree().Node(value = 3.0, name = 'B')
-	>>> gc3 = Tree().Node(value = 2.0, name = 'C')
-	>>> ggc = Tree().Node(value = 1.0, name = 'D') # LEVEL 4
-	>>> root.parent = None
-	>>> root.children = {c1, c2, c3}
-	>>> root.children
-	{<NODE: value=0.5, name=None>, <NODE: value=1.0, name=None>, <NODE: value=3.0, name=A>}
-	>>> c1 in root.children
-	True
-	>>> root.ordered_children()
-	[<NODE: value=0.5, name=None>, <NODE: value=1.0, name=None>, <NODE: value=3.0, name=A>]
-	>>> c1.add_children([gc1, gc2])
-	>>> c1.num_children
-	2
-	>>> c2.add_child(gc3)
-	>>> gc1.add_child(ggc)
-	>>> example_path = [root.value, 4.0, 1.0, 0.5, 2.0]
-	>>> root.add_path_of_children(path = example_path, final_node_name = 'Full Path')
-	>>> for child in root.children:
-	... 	print(child)
-	<NODE: value=0.5, name=None>
-	<NODE: value=1.0, name=None>
-	<NODE: value=3.0, name=A>
-	<NODE: value=4.0, name=None>
-	>>> # Check for overwriting data...
-	>>> example_path_2 = [root.value, 1.0, 2.0, 1.0]
-	>>> root.add_path_of_children(path = example_path_2, final_node_name = 'Test Overwrite')
-	>>> # We can access children by referencing a node or by calling to its representative value.
-	>>> newValue = root.get_child_by_value(4.0)
-	>>> newValue.children
-	{<NODE: value=1.0, name=None>}
-	>>> c2.get_child(gc3)
-	<NODE: value=2.0, name=C>
-	>>> c2.get_child_by_value(2.0)
-	<NODE: value=2.0, name=C>
-	>>> c2.get_child_by_value(4.0)
-	>>> TestTree = NaryTree()
-	>>> TestTree.root = root
-	>>> TestTree
-	<trees.NaryTree: nodes=13>
-	>>> TestTree.is_empty()
-	False
-	>>> # Calling the size returns the number of nodes in the tree.
-	>>> TestTree.size()
-	13
-	>>> TestTree.all_possible_paths()
-	[1.0]
-	[1.0, 0.5]
-	[1.0, 0.5, 0.5]
-	[1.0, 0.5, 0.5, 1.0]
-	[1.0, 0.5, 3.0]
-	[1.0, 1.0]
-	[1.0, 1.0, 2.0]
-	[1.0, 1.0, 2.0, 1.0]
-	[1.0, 3.0]
-	[1.0, 4.0]
-	[1.0, 4.0, 1.0]
-	[1.0, 4.0, 1.0, 0.5]
-	[1.0, 4.0, 1.0, 0.5, 2.0]
-	>>> # Get paths of a particular length:
-	>>> for this_path in TestTree.all_named_paths(cutoff = 3):
-	...     print(this_path)
-	B
-	C
-	>>> # We can search for paths as follows.
-	>>> TestTree.search_for_path([1.0, 0.5, 0.5, 1.0])
-	'D'
-	>>> TestTree.search_for_path([1.0, 0.5, 3.0])
-	'B'
-	>>> TestTree.search_for_path([1.0, 2.0, 4.0])
-	>>> TestTree.search_for_path([1.0, 1.0, 2.0])
-	'C'
-	>>> # Allow for unnamed paths to be found.
-	>>> TestTree.search_for_path([1.0, 0.5, 0.5], allow_unnamed=True)
-	[1.0, 0.5, 0.5]
-	>>> # Level order traversal
-	>>> TestTree.level_order_traversal()
-	[[1.0], [0.5, 1.0, 3.0, 4.0], [0.5, 3.0, 2.0, 1.0], [1.0, 1.0, 0.5], [2.0]]
-	>>> # We can serialize an NaryTree with NaryTree.serialize()
 	"""
 	def __init__(self):
 		self.root = None
@@ -244,7 +160,6 @@ class Tree:
 	def is_empty(self) -> bool:
 		return (self.size() == 0)
 
-	################################################################################################
 	def serialize(self, for_treant=False):
 		"""tree=pickled tree will not be needed in the actual tree."""
 		def encapsulate(d):
@@ -261,7 +176,7 @@ class Tree:
 
 		pickled = jsonpickle.encode(self, unpicklable=False)
 
-		if not for_treant:
+		if not(for_treant):
 			loaded = json.loads(pickled)
 			return json.dumps(loaded)
 		else:
@@ -269,7 +184,6 @@ class Tree:
 			w_text_field = {"nodeStructure": encapsulate(loaded["root"])}
 			return json.dumps(w_text_field)
 
-	################################################################################################
 	def _all_possible_paths_helper(self, node, path=[]):
 		"""Helper function for self.all_possible_paths()."""
 		path.append(node.value)
@@ -334,25 +248,7 @@ class Tree:
 		raise NotImplementedError
 
 	################################################################################################
-	# Level-Order Traversal
-	def level_order_traversal(self):
-		"""Returns the level order traversal of an NaryTree."""
-		if not self.root:
-			return []
-		queue = deque([self.root])
-		result = []
-		while len(queue):
-			level_result = []
-			for i in range(len(queue)):
-				node = queue.popleft()
-				level_result.append(node.value)
-				for child in node.children:
-					queue.append(child)
-			result.append(level_result)
-
-		return result
-
-	################################################################################################
+	# Search and traversal. 
 	def search_for_path(self, path_from_root, allow_unnamed=False):
 		"""
 		Searches for ``path_from_root`` through the tree for a continuous path to a node.
@@ -389,13 +285,19 @@ class Tree:
 				else:
 					i += 1
 
-	def ld_search(self, path_from_root, allow_unnamed=False):
-		"""
-		This is a special use-case in :obj:`~decitala.trees.get_by_ql_array` based on the observation
-		that the difference representation of mixed augmentations are linearly dependent. In this search
-		tool, rather than checking if a path exists in a tree, we check on a level-order basis
-		for a node for which the input is linearly dependent.
+	def level_order_traversal(self):
+		"""Returns the level order traversal of an NaryTree."""
+		if not self.root:
+			return []
+		queue = deque([self.root])
+		result = []
+		while len(queue):
+			level_result = []
+			for i in range(len(queue)):
+				node = queue.popleft()
+				level_result.append(node.value)
+				for child in node.children:
+					queue.append(child)
+			result.append(level_result)
 
-		:raises `NotImplementedError`:
-		"""
-		raise NotImplementedError
+		return result
