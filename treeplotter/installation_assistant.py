@@ -7,16 +7,19 @@
 # Location: Kent, 2021
 ####################################################################################################
 import subprocess
+import os
 
-def run():
+here = os.path.abspath(os.path.dirname(__file__))
+executable_file = os.path.dirname(here) + "/treeplotter/package_installer.zsh"
+
+def run(run=False):
 	"""
 	Installation assistant for the treeplotter library. 
 	"""
-	res = subprocess.getoutput("~ Welcome to the treeplotter installation assistant. You will be asked before each package is installed. Proceed? [Y/n]")
-	# if res:
-	#     subprocess.run(["chmod", "+x", "package_installer.zsh"])
-	#     subprocess.run(["./package_installer.zsh"])
-	# else:
-	#     subprocess.run(["echo EXITING"])
-
-run()
+	subprocess.run("echo Welcome to the treeplotter installation assistant.", shell=True)
+	if run:
+		subprocess.run("echo Updating brew and installing requirements...", shell=True)
+		subprocess.run(["chmod", "+x", executable_file])
+		subprocess.run([executable_file])
+	else:
+		subprocess.run("echo Exiting", shell=True)
