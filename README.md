@@ -8,45 +8,16 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 <img src="Prosodic_Tree.png" height="250" width="715" style="border: 2px solid">
 
 ### MacOS Installation
-**Disclaimer**
-I haven't tested this on anything other than MacOS (Big Sur). If you find this install works (or doesn't!) on other platforms, please file an issue or a Pull Request. 
-
-This package requires a few installs. Sorry. Hopefully it's worth it. If all works, you should be able to copy-paste these commands into command line. 
-
-1. Install homebrew:
+**To plot any tree diagrams, you must follow these instructions!**
+I've only tested this on MacOS (Big Sur). If you find this install doesn't work on other platforms, please file an Issue or a Pull Request. This package requires a few installs. Sorry. Hopefully it's worth it. To avoid the complication of requiring the user to install a number of different resources individually, I've created an installation assistant that will run the procedure for you. You can tell the installer to avoid installing any of the packages in the assistant (if, for example, you already have it installed). To begin, run the following in the interpreter:
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+>>> from treeplotter import installation_assistant
+>>> installation_assistant.run()
+~ Welcome to the treeplotter installation assistant. You will be asked before each package is installed. Proceed? [Y/n] 
 ```
 
-2. Install `imagemagick`:
+### Troubleshooting
+If you're running MacOS and see issues related to R installation, it may help to add the following to your `.zshrc`:
 ```
-brew install imagemagick
+export PATH=$PATH:/Library/Frameworks/R.framework/Resources
 ```
-
-3. Install `node`
-```
-brew install node
-```
-
-4. Install `browserify`
-```
-npm install -g browserify
-```
-
-5. Install `phantomJS`
-```
-brew tap homebrew/cask
-brew cask install phantomjs
-```
-
-6. Install `R`:
-```
-brew install r
-```
-
-7. Install `webshot`
-```
-Rscript installPkgs.R "webshot"
-```
-
-Will also need npm and browserify... This is making me think I should add a brew_installs.txt file... 
