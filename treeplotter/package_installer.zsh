@@ -8,12 +8,12 @@ brew install imagemagick
 echo Updating or installing node...
 brew install node
 
-echo Updating or installing phantomJS
+echo Updating or installing phantomJS...
 brew install phantomjs
 
-echo Installing browserify (JS library)
+echo Installing browserify...
 npm install -g browserify
 
-# Installing R???!!
-# brew install r
-# Rscript installPkgs.R "webshot"
+echo Installing R and the webshot package...
+brew install r
+Rscript installPkgs.R "webshot"
