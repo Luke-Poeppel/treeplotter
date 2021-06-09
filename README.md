@@ -5,7 +5,7 @@ Tree plotting is a nightmare in Python. This package aims to make this easier. I
 This library has `Node` and `Tree` classes in the `treeplotter.tree` module. `Node` objects store a value and a name (string or `None`). We can then specify the nodes children and parent. A `Tree` is then defined by a root node. We can then create an image of this tree (rendered by TreantJS) to an HTML file and save it to PNG via webshot. See `Tutorial.md` for a complete demo. 
 
 This package is used in the `decitala` package (see [here](https://github.com/Luke-Poeppel/decitala)) to make `FragmentTree` diagrams, like the following one of the Greek Prosodic Feet:
-<img src="Prosodic_Tree.png" height="250" width="715" style="border: 2px solid">
+<img src="images/Prosodic_Tree.png" height="250" width="715" style="border: 2px solid">
 
 ### MacOS Installation
 **To plot any tree diagrams, you must follow these instructions!**

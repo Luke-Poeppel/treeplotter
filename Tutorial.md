@@ -59,4 +59,4 @@ Additionally, you can call `tree.show(save_path, verbose)` to return (and save) 
 is useful when working with the package in Jupyter, for example. This method will return a file called `shot.png` in the requests
 `save_path` directory. The above tree creates the following image:
 
-<img src="tutorial_tree.png" height="250" width="715" style="border: 2px solid">
+<img src="images/tutorial_tree.png" height="250" width="715" style="border: 2px solid">
