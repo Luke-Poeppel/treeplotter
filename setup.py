@@ -40,9 +40,4 @@ setup(
 		"pytest",
 		"Wand",
 	],
-	entry_points={
-		"console_scripts": [
-			"treeplotter = treeplotter.cli:treeplotter"
-		]
-	},
 )

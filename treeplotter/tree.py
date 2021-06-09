@@ -135,7 +135,7 @@ class Tree:
 		self.root = root
 
 	def __repr__(self):
-		return '<trees.NaryTree: nodes={}>'.format(self.size())
+		return '<tree.Tree nodes={}>'.format(self.size())
 
 	def __iter__(self):
 		"""

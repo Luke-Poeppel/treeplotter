@@ -24,7 +24,7 @@ def _prepare_docs_and_screenshot(path, serialized_tree, logger):
 		shell=True
 	)
 
-def create_tree_diagram(FragmentTree, path=None, verbose=False):
+def create_tree_diagram(Tree, path=None, verbose=False):
 	"""
 	This function creates a visualization of a given :obj:`~decitala.trees.FragmentTree`
 	using the Treant.js library. If a path is provided, all the files will be stored there. Otherwise,
