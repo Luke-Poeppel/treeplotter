@@ -1,6 +1,6 @@
 ####################################################################################################
 # File:     installation_assistant.py
-# Purpose:  Installation assistant for treeplotter. 
+# Purpose:  Installation assistant for treeplotter.
 #
 # Author:   Luke Poeppel
 #
@@ -14,7 +14,7 @@ executable_file = os.path.dirname(here) + "/treeplotter/package_installer.zsh"
 
 def run(install=False):
 	"""
-	Installation assistant for the treeplotter library. 
+	Installation assistant for the treeplotter library.
 	"""
 	subprocess.run("echo Welcome to the treeplotter installation assistant.", shell=True)
 	if install:

@@ -1,6 +1,6 @@
 ####################################################################################################
 # File:     tree.py
-# Purpose:  Simple Python NaryTree objects. 
+# Purpose:  Simple Python NaryTree objects.
 #
 # Author:   Luke Poeppel
 #
@@ -8,6 +8,7 @@
 ####################################################################################################
 import json
 import jsonpickle
+import deque
 
 class NodeException(Exception):
 	pass
@@ -52,7 +53,7 @@ class Node:
 
 	def add_path_of_children(self, path, final_node_name):
 		"""
-		Iterative solution. TODO: recursive. 
+		Iterative solution. TODO: recursive.
 		"""
 		if path[0] != self.value:
 			raise NodeException("First value in the path must be self.value.")
@@ -128,7 +129,7 @@ class Node:
 
 class Tree:
 	"""
-	Implementation of an NaryTree. 
+	Implementation of an NaryTree.
 
 	Nodes are hashed by their value and are stored in a set. For demonstration, we will create the
 	following tree: (If a string appears next to a node value, this means the path from the root to
@@ -251,7 +252,7 @@ class Tree:
 		raise NotImplementedError
 
 	################################################################################################
-	# Search and traversal. 
+	# Search and traversal.
 	def search_for_path(self, path_from_root, allow_unnamed=False):
 		"""
 		Searches for ``path_from_root`` through the tree for a continuous path to a node.

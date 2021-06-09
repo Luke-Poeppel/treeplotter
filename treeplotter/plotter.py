@@ -1,6 +1,6 @@
 ####################################################################################################
 # File:     plotter.py
-# Purpose:  Plotting module. 
+# Purpose:  Plotting module.
 #
 # Author:   Luke Poeppel
 #
@@ -14,14 +14,12 @@ import subprocess
 import shutil
 import tempfile
 
-from .tree import Tree
-
 here = os.path.abspath(os.path.dirname(__file__))
 treant_templates = here + "/treant_templates"
 
 def get_logger(name, print_to_console=True, write_to_file=None):
 	"""
-	A simple helper for logging. Copied from my `decitala` package. 
+	A simple helper for logging. Copied from my `decitala` package.
 	"""
 	logger = logging.getLogger(name)
 	if not len(logger.handlers):
@@ -67,8 +65,6 @@ def create_tree_diagram(tree, save_path=None, verbose=False):
 	This function creates a visualization of a given :obj:`~decitala.trees.FragmentTree`
 	using the Treant.js library. If a path is provided, all the files will be stored there. Otherwise,
 	they will be stored in a tempfile for the display.
-
-    TODO: fix duplication bug. very inefficient. 
 	"""
 	if verbose:
 		logger = get_logger(name=__name__, print_to_console=True)
