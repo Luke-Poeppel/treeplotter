@@ -9,8 +9,7 @@ echo Updating or installing node...
 brew install node
 
 echo Updating or installing phantomJS
-brew tap homebrew/cask
-brew cask install phantomjs
+brew install phantomjs
 
 echo Installing browserify (JS library)
 npm install -g browserify
