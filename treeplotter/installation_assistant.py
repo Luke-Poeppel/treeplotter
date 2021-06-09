@@ -17,7 +17,7 @@ def run(install=False):
 	Installation assistant for the treeplotter library. 
 	"""
 	subprocess.run("echo Welcome to the treeplotter installation assistant.", shell=True)
-	if run:
+	if install:
 		subprocess.run("echo Updating brew and installing requirements...", shell=True)
 		subprocess.run(["chmod", "+x", executable_file])
 		subprocess.run([executable_file])
