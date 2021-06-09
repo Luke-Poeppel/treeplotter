@@ -31,13 +31,19 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Install brew packages
-      run: brew install imagemagick
+    # - name: Install brew packages
+    #   run: brew install imagemagick
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -e .
+    
+    - name: Install brew & npm & r
+      run: |
+        echo RUNNING INSTALL ASSIST
+        treeplotter install-assist
+      
     - name: Test with pytest
       run: |
         pytest -v
