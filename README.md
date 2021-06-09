@@ -12,7 +12,16 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 
 ### MacOS Installation
 **To plot any tree diagrams, you must follow these instructions!**
-I've only tested this on MacOS (Big Sur 11.2.2 and Catalina 10.15). If you find this install doesn't work on other versions and OSs, please file an Issue or a Pull Request! This package requires some complicated installs. Sorry. Hopefully it's worth it. To avoid the complication of requiring the user to install a number of different resources _individually_, I've created an installation assistant that will run them for you. First install this package with
+I've only tested this on MacOS (Big Sur 11.2.2 and Catalina 10.15). If you find this install doesn't work on other versions and OSs, please file an Issue or a Pull Request! This package requires some complicated installs. Sorry. Hopefully it's worth it. This package requires:
+1. `homebrew`
+2. `imagemagick`
+3. `node`
+4. `browserify`
+5. `phantomJS`
+6. `R`
+7. `webshot`
+
+You are free to install these packages on your own. For simplicity, however, I've created an installation assistant that will install the packages for you. First install this package with:
 ```
 $ pip3 install treeplotter
 ```
