@@ -16,4 +16,4 @@ npm install -g browserify
 
 echo Installing R and the webshot package...
 brew install r
-Rscript installPkgs.R "webshot"
+Rscript -e 'install.packages("webshot", repos="https://cloud.r-project.org")'
