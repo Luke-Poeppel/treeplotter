@@ -18,12 +18,16 @@ This package requires a few installs. Sorry. Hopefully it's worth it. If all wor
 ```
 brew install imagemagick
 ```
-3. Install `R`:
+3. Install `phantomJS`
+```
+brew tap homebrew/cask
+brew cask install phantomjs
+```
+4. Install `R`:
 ```
 brew install r
 ```
-4. Install `webshot`
+5. Install `webshot`
 ```
 Rscript installPkgs.R "webshot"
 ```
-phantom js...
