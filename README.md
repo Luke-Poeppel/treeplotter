@@ -11,10 +11,9 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 
 ### MacOS Installation
 **To plot any tree diagrams, you must follow these instructions!**
-I've only tested this on MacOS (Big Sur). If you find this install doesn't work on other platforms, please file an Issue or a Pull Request. This package requires some complicated installs. Sorry. Hopefully it's worth it. To avoid the complication of requiring the user to install a number of different resources _individually_, I've created an installation assistant that will run the procedure for you. To begin, run the following in the interpreter:
+I've only tested this on MacOS (Big Sur). If you find this install doesn't work on other platforms, please file an Issue or a Pull Request. This package requires some complicated installs. Sorry. Hopefully it's worth it. To avoid the complication of requiring the user to install a number of different resources _individually_, I've created an installation assistant that will run the procedure for you. To begin, run the following in command line:
 ```
->>> from treeplotter import installation_assistant
->>> installation_assistant.run(install=True)
+$ treeplotter install-assist
 ```
 
 ### Troubleshooting
