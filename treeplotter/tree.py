@@ -8,7 +8,8 @@
 ####################################################################################################
 import json
 import jsonpickle
-import deque
+
+from collections import deque
 
 class NodeException(Exception):
 	pass
