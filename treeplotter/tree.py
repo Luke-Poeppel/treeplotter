@@ -24,7 +24,7 @@ class Node:
 		self.children = set()
 
 	def __repr__(self):
-		return '<NODE: value={0}, name={1}>'.format(self.value, self.name)
+		return '<tree.Node value={0}, name={1}>'.format(self.value, self.name)
 
 	def __hash__(self):
 		return hash(self.value)
@@ -63,9 +63,9 @@ class Node:
 				i += 1
 			else:
 				if i == len(path) - 1:
-					child = NaryTree().Node(value=path[i], name=final_node_name)
+					child = Node(value=path[i], name=final_node_name)
 				else:
-					child = NaryTree().Node(value=path[i])
+					child = Node(value=path[i])
 
 				curr.add_child(child)
 				curr = child
@@ -274,9 +274,9 @@ class Tree:
 
 			if allow_unnamed is False:
 				if (i == len(path_from_root) - 1) and len(curr.children) == 0:
-					return curr.name
+					return curr
 				elif (i == len(path_from_root) - 1) and curr.name is not None:
-					return curr.name
+					return curr
 				else:
 					i += 1
 			else:
