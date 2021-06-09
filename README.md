@@ -34,3 +34,5 @@ brew install r
 ```
 Rscript installPkgs.R "webshot"
 ```
+
+Will also need npm and browserify... This is making me think I should add a brew_installs.txt file... 

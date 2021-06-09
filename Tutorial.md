@@ -56,4 +56,6 @@ we use the `plotter.make_tree_diagram` function.
 >>> # This will display some logs and save an image of the tree to your desired directory. 
 ```
 Additionally, you can call `tree.show(save_path, verbose)` to return (and save) a `wand.Image` object. This 
-is useful when working with the package in Jupyter, for example. 
+is useful when working with the package in Jupyter, for example. This method will return a file called `shot.png` in the requests
+`save_path` directory. The above tree creates the following image:
+<img src="tutorial_tree.png" height="250" width="715" style="border: 2px solid">

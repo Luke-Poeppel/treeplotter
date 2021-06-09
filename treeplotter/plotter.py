@@ -1,3 +1,40 @@
+####################################################################################################
+# File:     plotter.py
+# Purpose:  Plotting module. 
+#
+# Author:   Luke Poeppel
+#
+# Location: Kent, 2021
+####################################################################################################
+import logging
+import os
+import json
+import sys
+import subprocess
+import shutil
+
+from .tree import Tree
+
+here = os.path.abspath(os.path.dirname(__file__))
+treant_templates = here + "/treant_templates"
+
+def get_logger(name, print_to_console=True, write_to_file=None):
+	"""
+	A simple helper for logging. Copied from my `decitala` package. 
+	"""
+	logger = logging.getLogger(name)
+	if not len(logger.handlers):
+		logger.setLevel(logging.INFO)
+
+		if write_to_file is not None:
+			file_handler = logging.FileHandler(write_to_file)
+			logger.addHandler(file_handler)
+		if print_to_console:
+			stdout_handler = logging.StreamHandler(sys.stdout)
+			logger.addHandler(stdout_handler)
+
+	return logger
+
 def _prepare_docs_and_screenshot(path, serialized_tree, logger):
 	with open("tree.json", "w") as json_file:
 		json.dump(serialized_tree, json_file)
@@ -24,45 +61,28 @@ def _prepare_docs_and_screenshot(path, serialized_tree, logger):
 		shell=True
 	)
 
-def create_tree_diagram(Tree, path=None, verbose=False):
+def create_tree_diagram(tree, save_path=None, verbose=False):
 	"""
 	This function creates a visualization of a given :obj:`~decitala.trees.FragmentTree`
 	using the Treant.js library. If a path is provided, all the files will be stored there. Otherwise,
 	they will be stored in a tempfile for the display.
 
-	:param `~decitala.trees.FragmentTree` FragmentTree: A Fragment tree
-	:param str path: Path to the folder where the visualization will be optionally stored.
-					Default is `None`.
-	:return: A folder at the provided path containing an index.html file which has a visualization
-			of the provided :obj:`~decitala.trees.FragmentTree`.
+    TODO: fix duplication bug. very inefficient. 
 	"""
 	if verbose:
 		logger = get_logger(name=__name__, print_to_console=True)
 	else:
 		logger = get_logger(name=__name__, print_to_console=False)
 
-	stupid_tree = trees.NaryTree()
-	if FragmentTree.rep_type == "ratio":
-		root = trees.NaryTree().Node(value=1.0, name=None)
-		for this_fragment in FragmentTree.sorted_data:
-			fragment_list = this_fragment.successive_ratio_array().tolist()
-			root.add_path_of_children(fragment_list, this_fragment.name)
-	else:
-		root = trees.NaryTree().Node(value=0.0, name=None)
-		for this_fragment in FragmentTree.sorted_data:
-			fragment_list = this_fragment.successive_difference_array().tolist()
-			root.add_path_of_children(fragment_list, this_fragment.name)
-
-	stupid_tree.root = root
-	serialized = stupid_tree.serialize(for_treant=True)
+	serialized = tree.serialize(for_treant=True)
 
 	logger.info("-> Creating directory and writing tree to JSON...")
-	if path is not None:
-		os.mkdir(path)
-		os.chdir(path)
-		_prepare_docs_and_screenshot(path, serialized_tree=serialized, logger=logger)
+	if save_path:
+		os.mkdir(save_path)
+		os.chdir(save_path)
+		_prepare_docs_and_screenshot(save_path, serialized_tree=serialized, logger=logger)
 		logger.info("Done ✔")
-		return path
+		return save_path
 	else:
 		with tempfile.TemporaryDirectory() as tmpdir:
 			os.chdir(tmpdir)
