@@ -12,8 +12,7 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 I've only tested this on MacOS (Big Sur). If you find this install doesn't work on other platforms, please file an Issue or a Pull Request. This package requires a few installs. Sorry. Hopefully it's worth it. To avoid the complication of requiring the user to install a number of different resources individually, I've created an installation assistant that will run the procedure for you. You can tell the installer to avoid installing any of the packages in the assistant (if, for example, you already have it installed). To begin, run the following in the interpreter:
 ```
 >>> from treeplotter import installation_assistant
->>> installation_assistant.run()
-~ Welcome to the treeplotter installation assistant. You will be asked before each package is installed. Proceed? [Y/n] 
+>>> installation_assistant.run(install=True)
 ```
 
 ### Troubleshooting

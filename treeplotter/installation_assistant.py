@@ -12,7 +12,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 executable_file = os.path.dirname(here) + "/treeplotter/package_installer.zsh"
 
-def run(run=False):
+def run(install=False):
 	"""
 	Installation assistant for the treeplotter library. 
 	"""
