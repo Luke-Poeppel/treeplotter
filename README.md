@@ -1,4 +1,5 @@
 # `treeplotter`
+[![Actions Status](https://github.com/Luke-Poeppel/treeplotter/workflows/Build/badge.svg)](https://github.com/Luke-Poeppel/treeplotter/actions)
 Tree plotting is a nightmare in Python. This package aims to make this easier. It wraps the TreantJS library to plot `Tree` objects and saves them to a rendered HTML file. This HTML file is then exported to a high-res PNG by wrapping R's ``webshot`` package. It requires some complicated installs, but this is the price to pay to not use any R, Javascript, or CSS ;)
 
 ### Usage
