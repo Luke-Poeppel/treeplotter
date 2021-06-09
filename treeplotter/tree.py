@@ -131,8 +131,8 @@ class Tree:
 	following tree: (If a string appears next to a node value, this means the path from the root to
 	that node is an encoded fragment.)
 	"""
-	def __init__(self):
-		self.root = None
+	def __init__(self, root=None):
+		self.root = root
 
 	def __repr__(self):
 		return '<trees.NaryTree: nodes={}>'.format(self.size())
