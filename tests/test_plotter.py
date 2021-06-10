@@ -49,3 +49,15 @@ def test_plotter(tutorial_tree):
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")
+
+# n1 = Node(name="Cat", image="/Users/lukepoeppel/treeplotter/tests/static/cat.jpg")
+# n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl.jpg")
+# # n3 = Node(name="Foe O' Coat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit.jpg")
+
+# n1.add_children([n2])
+# t = Tree(root=n1)
+# create_tree_diagram(
+# 	tree=t,
+# 	save_path="/Users/lukepoeppel/treeplotter/tests/t1",
+# 	verbose=True
+# )
