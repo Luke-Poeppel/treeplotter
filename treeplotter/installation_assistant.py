@@ -21,8 +21,8 @@ def run(install=False, force=False):
 		subprocess.run("echo Updating brew and installing requirements...", shell=True)
 		subprocess.run(["chmod", "+x", executable_file])
 		if force:
-			subprocess.run([executable_file, "force"])
+			subprocess.run([executable_file, "force"], shell=True)
 		else:
-			subprocess.run([executable_file, "unforced"])
+			subprocess.run([executable_file, "unforced"], shell=True)
 	else:
 		subprocess.run("echo Exiting", shell=True)
