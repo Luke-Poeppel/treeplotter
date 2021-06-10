@@ -7,6 +7,7 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 #### Added
 - Allow displaying images in the node. 
 - Added a `show` method to `tree.Tree` objects. 
+- Added support for `connector_type` in `Tree` objects. 
 
 #### Removed
 - Remove the `get_ordered_children` method for `Node`. It didn't make sense to keep it since nodes need no longer have a value. 
