@@ -195,8 +195,8 @@ class Tree:
 			data["text"] = {
 				"value": value,
 				"name": name,
-				"image": image
 			}
+			data["image"] = image
 			data["children"] = [encapsulate(child) for child in children]
 			return data
 
