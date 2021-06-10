@@ -19,17 +19,26 @@ class TreeException(Exception):
 
 class Node:
 	"""
-	A Node object stores an item and references to its parent and children. A parent
-	may have any arbitrary number of children, but each child has only 1 parent.
+	A Node object stores an item and references to its children. A parent may have any
+	arbitrary number of children, but each child has only 1 parent. You can also store
+	a relative or absolute path to an image in the `image` parameter.
 	"""
-	def __init__(self, value, name=None, **kwargs):
-		self.value = value
+	def __init__(
+			self,
+			name=None,
+			value=None,
+			image=None,
+			**kwargs
+		):
+		# Parameters for the `text` property.
 		self.name = name
-		self.parent = None
+		self.value = value
+		self.image = image
+
 		self.children = set()
 
 	def __repr__(self):
-		return '<tree.Node value={0}, name={1}>'.format(self.value, self.name)
+		return "<tree.Node name={0}>".format(self.name)
 
 	def __hash__(self):
 		return hash(self.value)
@@ -169,7 +178,7 @@ class Tree:
 		"""tree=pickled tree will not be needed in the actual tree."""
 		def encapsulate(d):
 			rv = {}
-			value, name, parents, children = d.values()
+			name, value, parents, children = d.values()
 			# Javascript's JSON.parse has a hard time with nulls.
 			if name is None:
 				name = ""
