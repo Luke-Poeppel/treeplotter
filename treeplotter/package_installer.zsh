@@ -26,6 +26,8 @@ function install_webshot {
 }
 
 if [ $1 == "force"]
+then
+    echo Force installing R and the webshot package...
     install_r
     install_webshot
 else
@@ -38,3 +40,4 @@ else
     read resp_webshot
     if [ $resp_webshot == "Y" ]
         install_webshot
+fi
