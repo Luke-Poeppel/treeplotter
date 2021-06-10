@@ -136,20 +136,6 @@ class Node:
 	def has_children(self) -> bool:
 		return (self.num_children != 0)
 
-	def ordered_children(self):
-		"""Returns the children of a node in list format, ordered by value."""
-		return sorted([child for child in self.children])
-
-	def write_to_json(self):
-		"""Used in the Treant.js visualization of Fragment trees."""
-		net_children_data = []
-		for this_child in self.children:
-			data = {"info": {"name": this_child.name, "value": this_child.value}}
-			net_children_data.append(data)
-
-		out = {'info': {'name': self.name, 'value': self.value, 'children': net_children_data}}
-		return json.dumps(out)
-
 class Tree:
 	"""
 	Implementation of an NaryTree.

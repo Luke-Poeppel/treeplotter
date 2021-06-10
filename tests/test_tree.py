@@ -53,10 +53,6 @@ class TestTutorialTree:
 		values = [node.value for node in tutorial_tree.root.children]
 		assert set(values) == {0.5, 1.0, 3.0, 4.0}
 
-	def test_root_ordered_children(self, tutorial_tree):
-		ordered_children = tutorial_tree.root.ordered_children()
-		return [Node(value=0.5), Node(value=1.0), Node(name="A", value=3.0)]
-
 	def test_child1_in_root_children(self, tutorial_tree):
 		c1 = Node(value=0.5)
 		assert c1 in tutorial_tree.root.children
@@ -79,6 +75,3 @@ class TestTutorialTree:
 	def test_search_unnamed_path(self, tutorial_tree):
 		path = tutorial_tree.search_for_path([1.0, 0.5, 0.5], allow_unnamed=True)
 		assert path == [1.0, 0.5, 0.5] # If not found in tree, would return None
-
-# t = tutorial_tree()
-# print(t.serialize(for_treant=True))

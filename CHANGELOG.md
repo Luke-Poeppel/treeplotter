@@ -8,6 +8,10 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 - Allow displaying images in the node. 
 - Added a `show` method to `tree.Tree` objects. 
 
+#### Removed
+- Remove the `get_ordered_children` method for `Node`. It didn't make sense to keep it since nodes need no longer have a value. 
+- Remove the `write_to_json` method for `Node`. It was unused anywhere in the package. 
+
 ## [v0.1.1](https://github.com/Luke-Poeppel/treeplotter/tree/v0.1.1) June 10, 2021
 #### Added
 - Added a CHANGELOG.md file.
