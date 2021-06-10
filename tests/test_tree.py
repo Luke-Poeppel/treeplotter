@@ -7,17 +7,17 @@ from treeplotter.tree import (
 
 @pytest.fixture
 def tutorial_tree():
-	root = Node(value=1.0, name=None)
+	root = Node(value=1.0)
 
-	child1 = Node(value=0.5, name=None)
-	child2 = Node(value=1.0, name=None)
-	child3 = Node(value=3.0, name="A")
+	child1 = Node(value=0.5)
+	child2 = Node(value=1.0)
+	child3 = Node(name="A", value=3.0)
 
-	granchild1 = Node(value=0.5, name=None)
-	granchild2 = Node(value=3.0, name="B")
-	granchild3 = Node(value=2.0, name="C")
+	granchild1 = Node(value=0.5)
+	granchild2 = Node(name="B", value=3.0)
+	granchild3 = Node(name="C", value=2.0)
 
-	greatgrandchild = Node(value=1.0, name="D")
+	greatgrandchild = Node(name="D", value=1.0)
 
 	root.children = {child1, child2, child3}
 
@@ -43,7 +43,7 @@ class TestTutorialTree:
 
 	def test_node_repr(self, tutorial_tree):
 		c1 = tutorial_tree.root.get_child_by_value(0.5)
-		assert c1.__repr__() == "<tree.Node value=0.5, name=None>"
+		assert c1.__repr__() == "<tree.Node name=None>"
 
 	def test_root_name_and_value(self, tutorial_tree):
 		assert tutorial_tree.root.value == 1
@@ -55,10 +55,10 @@ class TestTutorialTree:
 
 	def test_root_ordered_children(self, tutorial_tree):
 		ordered_children = tutorial_tree.root.ordered_children()
-		return [Node(0.5, None), Node(1.0, None), Node(3.0, "A")]
+		return [Node(value=0.5), Node(value=1.0), Node(name="A", value=3.0)]
 
 	def test_child1_in_root_children(self, tutorial_tree):
-		c1 = Node(0.5, None)
+		c1 = Node(value=0.5)
 		assert c1 in tutorial_tree.root.children
 
 	def test_get_child_by_value(self, tutorial_tree):
@@ -79,3 +79,6 @@ class TestTutorialTree:
 	def test_search_unnamed_path(self, tutorial_tree):
 		path = tutorial_tree.search_for_path([1.0, 0.5, 0.5], allow_unnamed=True)
 		assert path == [1.0, 0.5, 0.5] # If not found in tree, would return None
+
+# t = tutorial_tree()
+# print(t.serialize(for_treant=True))

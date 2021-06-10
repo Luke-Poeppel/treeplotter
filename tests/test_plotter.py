@@ -7,17 +7,17 @@ from treeplotter.plotter import create_tree_diagram
 
 @pytest.fixture
 def tutorial_tree():
-	root = Node(value=1.0, name=None)
+	root = Node(value=1.0)
 
-	child1 = Node(value=0.5, name=None)
-	child2 = Node(value=1.0, name=None)
-	child3 = Node(value=3.0, name="A")
+	child1 = Node(value=0.5)
+	child2 = Node(value=1.0)
+	child3 = Node(name="A", value=3.0)
 
-	granchild1 = Node(value=0.5, name=None)
-	granchild2 = Node(value=3.0, name="B")
-	granchild3 = Node(value=2.0, name="C")
+	granchild1 = Node(value=0.5)
+	granchild2 = Node(name="B", value=3.0)
+	granchild3 = Node(name="C", value=2.0)
 
-	greatgrandchild = Node(value=1.0, name="D")
+	greatgrandchild = Node(name="D", value=1.0)
 
 	root.children = {child1, child2, child3}
 

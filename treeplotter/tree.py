@@ -19,20 +19,39 @@ class TreeException(Exception):
 
 class Node:
 	"""
-	A Node object stores an item and references to its parent and children. A parent
-	may have any arbitrary number of children, but each child has only 1 parent.
+	A Node object stores an item and references to its children. A parent may have any
+	arbitrary number of children, but each child has only 1 parent. You can also store
+	a relative or absolute path to an image in the `image` parameter.
 	"""
-	def __init__(self, value, name=None, **kwargs):
-		self.value = value
+	def __init__(
+			self,
+			name=None,
+			value=None,
+			image=None,
+			**kwargs
+		):
+		"""
+		Attributes
+		----------
+
+		name : str
+			name to be displayed in the node.
+		value : class
+			value to be displayed in the node.
+		image : float
+			path to image file to be displayed in the node.
+		"""
 		self.name = name
-		self.parent = None
+		self.value = value
+		self.image = image
+
 		self.children = set()
 
 	def __repr__(self):
-		return '<tree.Node value={0}, name={1}>'.format(self.value, self.name)
+		return "<tree.Node name={0}>".format(self.name)
 
 	def __hash__(self):
-		return hash(self.value)
+		return hash(str(self.name) + str(self.value) + str(self.image))
 
 	def __eq__(self, other):
 		return (self.value == other.value)
@@ -150,45 +169,49 @@ class Tree:
 		for this_named_path in self.all_named_paths():
 			yield this_named_path
 
-	def _size_helper(self, node):
-		"""Helper function for self.size()."""
-		num_nodes = 1
-		for child in node.children:
-			num_nodes += self._size_helper(child)
-
-		return num_nodes
-
-	def size(self):
+	def size(self) -> int:
 		"""Returns the number of nodes in the nary tree."""
-		return self._size_helper(self.root)
+		def _size_helper(node):
+			"""Helper function for self.size()."""
+			num_nodes = 1
+			for child in node.children:
+				num_nodes += _size_helper(child)
+			return num_nodes
+		return _size_helper(self.root)
 
 	def is_empty(self) -> bool:
 		return (self.size() == 0)
 
-	def serialize(self, for_treant=False):
-		"""tree=pickled tree will not be needed in the actual tree."""
+	def serialize(self, for_treant=True) -> str:
 		def encapsulate(d):
-			rv = {}
-			value, name, parents, children = d.values()
-			# Javascript's JSON.parse has a hard time with nulls.
-			if name is None:
+			data = {}
+			name, value, image, children = d.values()
+			if not(name):
 				name = ""
-			if parents is None:
-				parents = ""
-			rv['text'] = {'value': value, 'name': name, 'parents': parents}
-			rv['children'] = [encapsulate(c) for c in children]
-			return rv
+			if not(value):
+				value = ""
+			if not image:
+				image = ""
+			data["text"] = {
+				"value": value,
+				"name": name,
+			}
+			data["image"] = image
+			data["children"] = [encapsulate(child) for child in children]
+			return data
 
 		pickled = jsonpickle.encode(self, unpicklable=False)
-
-		if not(for_treant):
+		if for_treant:
 			loaded = json.loads(pickled)
-			return json.dumps(loaded)
+			with_nodeStructure = {
+				"nodeStructure": encapsulate(loaded["root"])}
+			return json.dumps(with_nodeStructure)
 		else:
 			loaded = json.loads(pickled)
-			w_text_field = {"nodeStructure": encapsulate(loaded["root"])}
-			return json.dumps(w_text_field)
+			return json.dumps(loaded)
 
+	################################################################################################
+	# A few miscellaneous methods for working with trees.
 	def _all_possible_paths_helper(self, node, path=[]):
 		"""Helper function for self.all_possible_paths()."""
 		path.append(node.value)
@@ -252,8 +275,6 @@ class Tree:
 		"""Given a name (hopefully attached to a node), returns a list of the subpaths above that node."""
 		raise NotImplementedError
 
-	################################################################################################
-	# Search and traversal.
 	def search_for_path(self, path_from_root, allow_unnamed=False):
 		"""
 		Searches for ``path_from_root`` through the tree for a continuous path to a node.
