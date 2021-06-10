@@ -10,6 +10,9 @@ import json
 import jsonpickle
 
 from collections import deque
+from wand.image import Image
+
+from .plotter import create_tree_diagram
 
 class NodeException(Exception):
 	pass
@@ -327,3 +330,14 @@ class Tree:
 			result.append(level_result)
 
 		return result
+
+	def show(self, save_path, verbose=False):
+		"""
+		Show the tree object directly from the class
+		"""
+		pdf_filepath = create_tree_diagram(FragmentTree=self, verbose=verbose)
+		img = Image(filename=pdf_filepath)
+		if save_path is not None:
+			img.save(filename=save_path)
+		else:
+			return img
