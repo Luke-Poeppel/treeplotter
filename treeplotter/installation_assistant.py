@@ -23,6 +23,6 @@ def run(install=False, force=False):
 		if force:
 			subprocess.run([executable_file, "force"])
 		else:
-			subprocess.run([executable_file])
+			subprocess.run([executable_file, "unforced"])
 	else:
 		subprocess.run("echo Exiting", shell=True)
