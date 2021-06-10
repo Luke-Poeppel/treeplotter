@@ -185,16 +185,17 @@ class Tree:
 	def serialize(self, for_treant=True) -> str:
 		def encapsulate(d):
 			data = {}
-			name, value, parents, children = d.values()
-			if name is None:
+			name, value, image, children = d.values()
+			if not(name):
 				name = ""
-			if parents is None:
-				parents = ""
-
+			if not(value):
+				value = ""
+			if not image:
+				image = ""
 			data["text"] = {
 				"value": value,
 				"name": name,
-				"parents": parents
+				"image": image
 			}
 			data["children"] = [encapsulate(child) for child in children]
 			return data

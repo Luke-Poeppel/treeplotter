@@ -79,3 +79,6 @@ class TestTutorialTree:
 	def test_search_unnamed_path(self, tutorial_tree):
 		path = tutorial_tree.search_for_path([1.0, 0.5, 0.5], allow_unnamed=True)
 		assert path == [1.0, 0.5, 0.5] # If not found in tree, would return None
+
+# t = tutorial_tree()
+# print(t.serialize(for_treant=True))
