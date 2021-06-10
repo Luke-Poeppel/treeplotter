@@ -42,4 +42,3 @@ else
     if [ $resp_webshot == "Y" ]
     then
         install_webshot
-fi

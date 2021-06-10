@@ -18,5 +18,9 @@ def treeplotter():
 	pass
 
 @treeplotter.command()
-def install_assist():
-	run(install=True)
+@click.option("--force", default=False)
+def install_assist(force):
+	"""
+	Installation assistant for MacOS.
+	"""
+	run(install=True, force=force)

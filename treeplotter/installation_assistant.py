@@ -12,7 +12,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 executable_file = os.path.dirname(here) + "/treeplotter/package_installer.zsh"
 
-def run(install=False):
+def run(install=False, force=False):
 	"""
 	Installation assistant for the treeplotter library.
 	"""
@@ -20,6 +20,9 @@ def run(install=False):
 	if install:
 		subprocess.run("echo Updating brew and installing requirements...", shell=True)
 		subprocess.run(["chmod", "+x", executable_file])
-		subprocess.run([executable_file, "force"])
+		if force:
+			subprocess.run([executable_file, "force"])
+		else:
+			subprocess.run([executable_file])
 	else:
 		subprocess.run("echo Exiting", shell=True)
