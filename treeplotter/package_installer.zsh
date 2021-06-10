@@ -25,23 +25,26 @@ function install_webshot {
     Rscript -e 'install.packages("webshot", repos="https://cloud.r-project.org")'
 }
 
-if [ $1 == "force" ]
-then
+FORCED="forced"
+YES="Y"
+
+if [ "$1" = "$FORCED" ]; then
     echo Force installing R and the webshot package...
     install_r
     install_webshot
 else
-    echo Would you like to install R? [Y/n]
-    read resp_R
-    if [ $resp_R == "Y" ]
-    then 
+    echo -n  "Would you like to install R? [Y/n]: "
+    read REPLY_R
+
+    echo $REPLY_R
+    if [ "$REPLY_R" = "$YES" ]; then
         install_r
     fi
     
-    echo Would you like to install the webshot package? [Y/n]
-    read resp_webshot
-    if [ $resp_webshot == "Y" ]
-    then
+    echo -n "Would you like to install the webshot package? [Y/n]: "
+    read REPLY_WEBSHOT
+
+    if [ "$REPLY_WEBSHOT" = "$YES" ]; then
         install_webshot
     fi
 fi
