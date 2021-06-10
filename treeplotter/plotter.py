@@ -15,7 +15,7 @@ import shutil
 import tempfile
 
 here = os.path.abspath(os.path.dirname(__file__))
-treant_templates = here + "/treant_templates"
+treant_templates = here + "/templates"
 
 def get_logger(name, print_to_console=True, write_to_file=None):
 	"""

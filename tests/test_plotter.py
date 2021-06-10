@@ -44,7 +44,7 @@ def test_plotter(tutorial_tree):
 		fcount = 0
 		for f in os.listdir(tmpdir):
 			fcount += 1
-		assert fcount == 11
+		assert fcount == 10
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")
