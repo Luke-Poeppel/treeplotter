@@ -51,7 +51,7 @@ class Node:
 		return "<tree.Node name={0}>".format(self.name)
 
 	def __hash__(self):
-		return hash(self.value)
+		return hash(str(self.name) + str(self.value) + str(self.image))
 
 	def __eq__(self, other):
 		return (self.value == other.value)

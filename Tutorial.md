@@ -62,3 +62,20 @@ is useful when working with the package in Jupyter, for example. This method wil
 `save_path` directory. The above tree creates the following image:
 
 <img src="images/tutorial_tree.png" height="250" width="715" style="border: 2px solid">
+
+#### Image support
+Beginning in v0.2.0, you can attach an image to a node object to display it in the visualization. 
+```
+>>> n1 = Node(name="Cat", image="/Users/lukepoeppel/treeplotter/tests/static/cat_small.jpg")
+>>> n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl_small.jpg")
+>>> n3 = Node(name="Foe O' Coat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
+>>> n1.add_children([n2, n3])
+>>> animal_tree = Tree(root=n1)
+>>> create_tree_diagram(
+...     tree=animal_tree,
+...     save_path="/Users/lukepoeppel/treeplotter/tests/t6",
+...     verbose=True
+... )
+```
+This creates the following image:
+<img src="images/image_nodes.png" height="250" width="715" style="border: 2px solid">
