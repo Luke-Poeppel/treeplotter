@@ -39,7 +39,7 @@ jobs:
     - name: Install brew & npm & r
       run: |
         echo RUNNING INSTALL ASSIST
-        treeplotter install-assist force
+        treeplotter install-assist
       
     - name: Test with pytest
       run: |
