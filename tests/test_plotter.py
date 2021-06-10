@@ -43,8 +43,9 @@ def test_plotter(tutorial_tree):
 		)
 		fcount = 0
 		for f in os.listdir(tmpdir):
-			fcount += 1
-		assert fcount == 10
+			if not(f.startswith(".")):
+				fcount += 1
+		assert fcount == 9
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")
