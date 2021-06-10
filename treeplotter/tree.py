@@ -140,12 +140,18 @@ class Tree:
 	"""
 	Implementation of an NaryTree.
 
-	Nodes are hashed by their value and are stored in a set. For demonstration, we will create the
-	following tree: (If a string appears next to a node value, this means the path from the root to
-	that node is an encoded fragment.)
+	Attributes
+	----------
+
+	root : tree.Node
+		A `tree.Node` object, acting as the root of the tree.
+	connector_type : str
+		The connector type of the tree, i.e. the Treant style used in the visualization. Common
+		options are `"curved"`, `"bCurve"`, `"step"`, and `"straight"`.
 	"""
-	def __init__(self, root=None):
+	def __init__(self, root=None, connector_type="curved"):
 		self.root = root
+		self.connector_type = connector_type
 
 	def __repr__(self):
 		return '<tree.Tree nodes={}>'.format(self.size())
