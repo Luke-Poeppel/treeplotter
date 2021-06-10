@@ -5,6 +5,7 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 
 ## [v0.2.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.2.0) ???
 #### Added
+- WIP: More general `Node` class. Allow displaying images in the node. 
 
 ## [v0.1.1](https://github.com/Luke-Poeppel/treeplotter/tree/v0.1.1) June 10, 2021
 #### Added
