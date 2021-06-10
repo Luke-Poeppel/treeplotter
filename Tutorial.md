@@ -1,11 +1,11 @@
 ### Tutorial
 #### `Node` and `Tree` classes. 
-To make a tree in the `treeplotter` library, we create nodes, create links between them, and finall store them in a tree. To create a node, you need only two values: a `value` and a `name`. (Eventually, this package might support more complex objects.) First, let's import the package and create a root node object. 
+To make a tree in the `treeplotter` library, we create nodes, links between them, and finally store them in a tree. First, let's import the package and create a root node object. 
 ```
 >>> from treeplotter.tree import Node, Tree
 >>> root = Node(value=1.0, name=None)
 ```
-Now lets say this `root` has three initial children, only one of which has a name. Let's create these children and their link to `root`. 
+Now lets say this `root` has three initial children, only one of which has a name. Let's create these children and then set their relationship to `root`. 
 ```
 >>> child1 = Node(value=0.5, name=None)
 >>> child2 = Node(value=1.0, name=None)
@@ -27,7 +27,7 @@ We can add a list of children to a given node via the `Node.add_children` method
 >>> child2.add_child(granchild3)
 >>> granchild1.add_child(greatgrandchild)
 ```
-We now have a proper tree object. Lastly, there's a method in the package for easily creating several nodes as a "lineage" called the `Node.add_path_of_children` method. Let's add two paths of children from the root. 
+Also included in `treeplotter` is a method for easily creating several nodes as a "lineage" called `Node.add_path_of_children`. The values provided will then automatically create nodes and set their relationships. Let's add two paths of children from the root. 
 ```
 >>> value_path = [root.value, 4.0, 1.0, 0.5, 2.0]
 >>> root.add_path_of_children(path=value_path, final_node_name="Full path")
@@ -35,22 +35,24 @@ We now have a proper tree object. Lastly, there's a method in the package for ea
 >>> value_path_2 = [root.value, 1.0, 2.0, 1.0]
 >>> root.add_path_of_children(path=value_path_2, final_node_name="Testing overwrite")
 ```
-But now we just have a bunch of nodes... To create a Tree object, just pass the `root` node!
+To create a Tree object, just pass the `root` node!
 ```
->>> tree =  Tree(root=root)
+>>> tree = Tree(root=root)
 >>> tree
 <tree.Tree nodes=13>
 ```
 There are several other properties and methods for working with trees in the package. See the source for these. 
 
 #### Making a Tree Diagram
-We now have our awesome `tree` object in the package. But who cares? We want to see it! To do so, 
-we use the `plotter.make_tree_diagram` function.
+We now have our `tree` object in the package. But who cares? We want to see it! To do so, use the 
+`plotter.make_tree_diagram` function. Pass our `tree` to the `tree` parameter. The `save_path` is a path 
+to a **folder which will be created upon running the function**. For instance, if I wanted to save the visualization to
+a folder called `mytree` in my home directory, I would use:
 ```
 >>> from treeplotter.plotter import make_tree_diagram
 >>> make_tree_diagram(
 ...     tree=tree,
-...     save_path=...,
+...     save_path="/Users/lukepoeppel/mytree",
 ...     verbose=True
 ... )
 >>> # This will display some logs and save an image of the tree to your desired directory. 
