@@ -30,7 +30,17 @@ class Node:
 			image=None,
 			**kwargs
 		):
-		# Parameters for the `text` property.
+		"""
+		Attributes
+		----------
+
+		name : str
+			name to be displayed in the node.
+		value : class
+			value to be displayed in the node.
+		image : float
+			path to image file to be displayed in the node.
+		"""
 		self.name = name
 		self.value = value
 		self.image = image
@@ -159,45 +169,48 @@ class Tree:
 		for this_named_path in self.all_named_paths():
 			yield this_named_path
 
-	def _size_helper(self, node):
-		"""Helper function for self.size()."""
-		num_nodes = 1
-		for child in node.children:
-			num_nodes += self._size_helper(child)
-
-		return num_nodes
-
-	def size(self):
+	def size(self) -> int:
 		"""Returns the number of nodes in the nary tree."""
-		return self._size_helper(self.root)
+		def _size_helper(node):
+			"""Helper function for self.size()."""
+			num_nodes = 1
+			for child in node.children:
+				num_nodes += _size_helper(child)
+			return num_nodes
+		return _size_helper(self.root)
 
 	def is_empty(self) -> bool:
 		return (self.size() == 0)
 
-	def serialize(self, for_treant=False):
-		"""tree=pickled tree will not be needed in the actual tree."""
+	def serialize(self, for_treant=True) -> str:
 		def encapsulate(d):
-			rv = {}
+			data = {}
 			name, value, parents, children = d.values()
-			# Javascript's JSON.parse has a hard time with nulls.
 			if name is None:
 				name = ""
 			if parents is None:
 				parents = ""
-			rv['text'] = {'value': value, 'name': name, 'parents': parents}
-			rv['children'] = [encapsulate(c) for c in children]
-			return rv
+
+			data["text"] = {
+				"value": value,
+				"name": name,
+				"parents": parents
+			}
+			data["children"] = [encapsulate(child) for child in children]
+			return data
 
 		pickled = jsonpickle.encode(self, unpicklable=False)
-
-		if not(for_treant):
+		if for_treant:
 			loaded = json.loads(pickled)
-			return json.dumps(loaded)
+			with_nodeStructure = {
+				"nodeStructure": encapsulate(loaded["root"])}
+			return json.dumps(with_nodeStructure)
 		else:
 			loaded = json.loads(pickled)
-			w_text_field = {"nodeStructure": encapsulate(loaded["root"])}
-			return json.dumps(w_text_field)
+			return json.dumps(loaded)
 
+	################################################################################################
+	# A few miscellaneous methods for working with trees.
 	def _all_possible_paths_helper(self, node, path=[]):
 		"""Helper function for self.all_possible_paths()."""
 		path.append(node.value)
@@ -261,8 +274,6 @@ class Tree:
 		"""Given a name (hopefully attached to a node), returns a list of the subpaths above that node."""
 		raise NotImplementedError
 
-	################################################################################################
-	# Search and traversal.
 	def search_for_path(self, path_from_root, allow_unnamed=False):
 		"""
 		Searches for ``path_from_root`` through the tree for a continuous path to a node.
