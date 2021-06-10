@@ -25,8 +25,7 @@ function install_webshot {
     Rscript -e 'install.packages("webshot", repos="https://cloud.r-project.org")'
 }
 
-STR = $1
-if [ $STR == "force"]
+if [ $1 == "force"]
     install_r
     install_webshot
 else
