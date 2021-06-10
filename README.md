@@ -21,7 +21,7 @@ I've only tested this on MacOS (Big Sur 11.2.2 and Catalina 10.15). If you find 
 6. `R`
 7. `webshot`
 
-You are free to install these packages on your own. For simplicity, however, I've created an installation assistant that will install the packages for you. First install this package with:
+You are free to install these packages on your own. For simplicity, however, I've created a MacOS installation assistant that will install the packages for you. First install this package with:
 ```
 $ pip3 install treeplotter
 ```
