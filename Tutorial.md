@@ -80,7 +80,7 @@ by using `ConnectorStyle`:
 ...     arrow_end="classic", # these come from the Raphaël documentation. 
 ...     arrow_width="wide",
 ...     arrow_length="long"
-)
+... )
 ```
 We also want the nodes in our tree to be baby-blue with a border radius of 10px. We can customize the node's style
 using `NodeStyle`:
@@ -91,7 +91,7 @@ using `NodeStyle`:
 ...     border_radius="10px"
 ... )
 ```
-Let's now create our tree. There are two final customizations allowed in the `Tree` class: the `orientation` and `connector_type` (options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`.). We can pass all of the information to the tree as follows:
+Let's now create our tree. There are two final customizations allowed in the `Tree` class: the `orientation` and `connector_type` (options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`). We can pass all of the information to the tree as follows:
 ```
 >>> animal_tree = Tree(
 ...     root=n1,
@@ -101,7 +101,7 @@ Let's now create our tree. There are two final customizations allowed in the `Tr
 ...     node_style=node_style
 ... )
 ```
-Now when we create our diagram, we wish the background color of the index.html and screenshot to be red. We
+Now when we create our diagram, we want the background color of the HTML file (and screenshot) to be red. We
 can do this by setting a hex color in the `background_color` parameter:
 ```
 >>> create_tree_diagram(
@@ -115,6 +115,3 @@ can do this by setting a hex color in the `background_color` parameter:
 This creates the following image:
 
 <img src="images/styled_tree.png" height="250" width="715" style="border: 2px solid">
-
-You can change the connection type between nodes with the `connector_type` parameter in the `Tree` class,
-as above. 
