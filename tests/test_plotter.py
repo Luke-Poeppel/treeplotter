@@ -4,6 +4,7 @@ import os
 
 from treeplotter.tree import Node, Tree
 from treeplotter.plotter import create_tree_diagram
+from treeplotter.style import ConnectorStyle, NodeStyle
 
 @pytest.fixture
 def tutorial_tree():
