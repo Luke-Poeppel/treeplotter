@@ -70,7 +70,7 @@ Beginning in v0.2.0, you can attach an image to a node object to display it in t
 >>> n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl_small.jpg")
 >>> n3 = Node(name="Foe O' Coat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
 >>> n1.add_children([n2, n3])
->>> animal_tree = Tree(root=n1)
+>>> animal_tree = Tree(root=n1, connector_type="curve")
 >>> create_tree_diagram(
 ...     tree=animal_tree,
 ...     save_path="/Users/lukepoeppel/treeplotter/tests/t6",
@@ -81,5 +81,5 @@ This creates the following image:
 
 <img src="images/image_nodes.png" height="250" width="715" style="border: 2px solid">
 
-You can change the connection type between nodes with the `connector_type` parameter. The options are 
-`"curved"`, `"bCurve"`, `"step"`, and `"straight"`.
+You can change the connection type between nodes with the `connector_type` parameter in the `Tree` class,
+as above. The options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`.
