@@ -81,7 +81,7 @@ three images in an eastward-facing tree (see `orientation`) with a `"step"` conn
 ```
 This creates the following image:
 
-<img src="images/flipped_tree.png" height="250" width="715" style="border: 2px solid">
+<img src="images/styled_tree.png" height="250" width="715" style="border: 2px solid">
 
 You can change the connection type between nodes with the `connector_type` parameter in the `Tree` class,
 as above. The options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`.

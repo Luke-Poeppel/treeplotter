@@ -13,4 +13,4 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 
 Images can be added to `Node` objects, and we can customize tree properties with connector types and orientation. 
 
-![](https://github.com/Luke-Poeppel/treeplotter/blob/master/images/flipped_tree.png)
+![](https://github.com/Luke-Poeppel/treeplotter/blob/master/images/styled_tree.png)
