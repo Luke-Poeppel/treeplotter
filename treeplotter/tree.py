@@ -13,6 +13,7 @@ from collections import deque
 from wand.image import Image
 
 from .plotter import create_tree_diagram
+from .style import ConnectorStyle
 
 class NodeException(Exception):
 	pass
@@ -148,8 +149,8 @@ class Tree:
 	connector_type : str
 		The connector type of the tree, i.e. the Treant style used in the visualization. Common
 		options are `"curved"`, `"bCurve"`, `"step"`, and `"straight"`.
-	connector_style : str
-		The style of the connector object. Comes from the Raphaël package.
+	connector_style : style.ConnectorStyle
+		An optional `style.ConnectorStyle` object. Comes from the Raphaël package.
 	orientation : str
 		Orientation of the tree in the visualization. Options are `"north"`, `"east"`,
 		`"south"`, and "`west`".
@@ -160,10 +161,12 @@ class Tree:
 			self,
 			root=None,
 			connector_type="curved",
-			orientation="north"
+			connector_style=ConnectorStyle(),
+			orientation="north",
 		):
 		self.root = root
 		self.connector_type = connector_type
+		self.connector_style = connector_style
 		self.orientation = orientation
 
 	def __repr__(self):

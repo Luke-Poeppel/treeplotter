@@ -38,7 +38,8 @@ def _prepare_chart_config(tree):
 	chart_config = dict()
 	chart_config["container"] = "#treeplotter"
 	connector_type_dict = {
-		"type": tree.connector_type
+		"type": tree.connector_type,
+		"style": tree.connector_style.style()
 	}
 	chart_config["connectors"] = connector_type_dict
 	chart_config["rootOrientation"] = tree.orientation.upper()
