@@ -6,7 +6,25 @@
 #
 # Location: Kent, 2021
 ####################################################################################################
+import cssutils
+
 from dataclasses import dataclass, asdict
+
+def write_treant_css(background_color, path):
+	TREANT_CSS = """
+	.Treant { position: relative; overflow: hidden; padding: 0 !important; }
+	.Treant > .node,
+	.Treant > .pseudo { position: absolute; display: block; visibility: hidden; }
+	.Treant.Treant-loaded .node,
+	.Treant.Treant-loaded .pseudo { visibility: visible; }
+	.Treant > .pseudo { width: 0; height: 0; border: none; padding: 0; }
+	.Treant .collapse-switch { width: 3px; height: 3px; display: block; border: 1px solid black; position: absolute; top: 1px; right: 1px; cursor: pointer; } # noqa
+	.Treant .collapsed .collapse-switch { background-color: %s; }
+	.Treant > .node img {	border: none; float: left; }
+	""" % background_color
+	sheet = cssutils.parseString(TREANT_CSS)
+	with open(path, "w") as TREANT_CSS_FILEPATH:
+		TREANT_CSS_FILEPATH.write(str(sheet.cssText))
 
 @dataclass
 class ConnectorStyle:

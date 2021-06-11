@@ -112,6 +112,7 @@ def _prepare_docs_and_screenshot(
 
 def create_tree_diagram(
 		tree,
+		background_color="#868DEE",
 		save_path=None,
 		webshot=False,
 		verbose=False
@@ -123,6 +124,8 @@ def create_tree_diagram(
 	----------
 	tree : tree.Tree
 		A `tree.Tree` object.
+	background_color : str
+		Color (given in Hex) of the desired background color of the visualization.
 	save_path : str
 		Optional path to the directory in which all the relevant files will be saved. Default is `None`.
 	webshot : bool
