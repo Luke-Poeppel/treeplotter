@@ -10,19 +10,32 @@ import subprocess
 import os
 
 here = os.path.abspath(os.path.dirname(__file__))
-executable_file = os.path.dirname(here) + "/treeplotter/package_installer.zsh"
+standard_installer = os.path.dirname(here) + "/treeplotter/standard_installer.zsh"
+screenshot_installer = os.path.dirname(here) + "/treeplotter/screenshot_installer.zsh"
 
-def run(install=False, force=False):
+def run(
+		install=False,
+		standard=False,
+		screenshot=False,
+		force=False,
+	):
 	"""
 	Installation assistant for the treeplotter library.
 	"""
 	subprocess.run("echo Welcome to the treeplotter installation assistant.", shell=True)
 	if install:
-		subprocess.run("echo Updating brew and installing requirements...", shell=True)
-		subprocess.run(["chmod", "+x", executable_file])
-		if force:
-			os.system(executable_file + " forced")  # subprocess didn't work here...
-		else:
-			os.system(executable_file + " unforced")
+		if standard:
+			subprocess.run("echo Installing standard requirements...", shell=True)
+			subprocess.run(["chmod", "+x", standard_installer])
+			os.system(standard_installer)
+		if screenshot:
+			if force:
+				subprocess.run("echo Force installing screenshot requirements...", shell=True)
+				subprocess.run(["chmod", "+x", screenshot_installer])
+				os.system(screenshot_installer + " forced")  # subprocess didn't work here...
+			else:
+				subprocess.run("echo Installing screenshot requirements...", shell=True)
+				subprocess.run(["chmod", "+x", screenshot_installer])
+				os.system(screenshot_installer + " unforced")
 	else:
 		subprocess.run("echo Exiting", shell=True)

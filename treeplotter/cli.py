@@ -18,16 +18,19 @@ def treeplotter():
 	pass
 
 @treeplotter.command()
-@click.option("--force", default=False)
 @click.option("--standard", default=False)
 @click.option("--screenshot", default=False)
-def install_assist(force, standard, screenshot):
+@click.option("--force", default=False)
+def install_assist(standard, screenshot, force):
 	"""
 	Installation assistant for MacOS.
+
+	Whether to force install R, webshot, and phantomJS without asking for input from the user.
+	This is really only intended to be used with github actions.
 	"""
 	run(
 		install=True,
-		force=force,
 		standard=standard,
-		screenshot=screenshot
+		screenshot=screenshot,
+		force=force,
 	)
