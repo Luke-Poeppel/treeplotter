@@ -11,7 +11,7 @@ $ treeplotter install-assist --standard True
 ```
 If you'd like to also be able to save screenshots of the trees as high-res PNGs, you will also need `phantomJS`, `R`, and `webshot`. Again, you can either install these requirements individually or use the `install-assistant` with:
 ```
-$ treeplotter install-assist screenshot
+$ treeplotter install-assist --screenshot True
 ```
 
 Now, `create_tree_diagram` will save screenshots of the tree to the directory.  
