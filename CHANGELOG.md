@@ -5,6 +5,7 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 
 ## [v0.4.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.0) ???
 #### Added
+- WIP: Upgraded styling system for the package. 
 
 ## [v0.3.1](https://github.com/Luke-Poeppel/treeplotter/tree/v0.3.1) June 11, 2021
 #### Fixed
