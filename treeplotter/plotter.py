@@ -19,15 +19,6 @@ from .style import write_treant_css
 here = os.path.abspath(os.path.dirname(__file__))
 treant_templates = here + "/templates"
 
-def prepare_arrow(dict_in):
-	"""
-	Raphaël's arrow formatting is a bit more involved. This parsing is done here.
-	"""
-	arrow_end = dict_in["arrow_end"]
-	arrow_width = dict_in["arrow_width"]
-	arrow_length = dict_in["arrow_length"]
-	return "-".join([arrow_end, arrow_width, arrow_length])
-
 def get_logger(name, print_to_console=True, write_to_file=None):
 	"""
 	A simple helper for logging. Copied from my `decitala` package.
@@ -44,6 +35,15 @@ def get_logger(name, print_to_console=True, write_to_file=None):
 			logger.addHandler(stdout_handler)
 
 	return logger
+
+def prepare_arrow(dict_in):
+	"""
+	Raphaël's arrow formatting is a bit more involved. This parsing is done here.
+	"""
+	arrow_end = dict_in["arrow_end"]
+	arrow_width = dict_in["arrow_width"]
+	arrow_length = dict_in["arrow_length"]
+	return "-".join([arrow_end, arrow_width, arrow_length])
 
 def _prepare_chart_config(tree):
 	chart_config = dict()
@@ -90,7 +90,7 @@ def _prepare_docs_and_screenshot(
 	with open("tree.json", "w") as json_file:
 		json.dump(serialized_tree, json_file)
 
-	logger.info("-> Copying .js files...")
+	logger.info("-> Copying templates...")
 	for this_file in os.listdir(treant_templates):
 		shutil.copyfile(treant_templates + "/" + this_file, path + "/" + this_file)
 
