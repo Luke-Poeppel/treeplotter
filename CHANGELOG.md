@@ -3,6 +3,10 @@ All important changes to the treeplotter package will be documented here.
 
 The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.3.0) June 11, 2021
+#### Added
+- Added support for `orientation` in `Tree` objects. 
+
 ## [v0.2.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.2.0) June 11, 2021
 #### Added
 - Allow displaying images in the node. 

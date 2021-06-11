@@ -41,10 +41,13 @@ def _prepare_chart_config(tree):
 		"type": tree.connector_type
 	}
 	chart_config["connectors"] = connector_type_dict
+	chart_config["rootOrientation"] = tree.orientation.upper()
+
 	HTML_dict_obj = {
 		"HTMLclass": "treeNode"
 	}
 	chart_config["node"] = HTML_dict_obj
+
 	dumped = json.dumps(chart_config)
 	with open("chart_config.json", "w") as chart_config_file:
 		json.dump(dumped, chart_config_file)

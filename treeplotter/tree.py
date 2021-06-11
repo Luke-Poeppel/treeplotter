@@ -148,10 +148,19 @@ class Tree:
 	connector_type : str
 		The connector type of the tree, i.e. the Treant style used in the visualization. Common
 		options are `"curved"`, `"bCurve"`, `"step"`, and `"straight"`.
+	orientation : str
+		Orientation of the tree in the visualization. Options are `"north"`, `"east"`,
+		`"south"`, and "`west`".
 	"""
-	def __init__(self, root=None, connector_type="curved"):
+	def __init__(
+			self,
+			root=None,
+			connector_type="curved",
+			orientation="north"
+		):
 		self.root = root
 		self.connector_type = connector_type
+		self.orientation = orientation
 
 	def __repr__(self):
 		return '<tree.Tree nodes={}>'.format(self.size())
