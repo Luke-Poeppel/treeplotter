@@ -148,9 +148,13 @@ class Tree:
 	connector_type : str
 		The connector type of the tree, i.e. the Treant style used in the visualization. Common
 		options are `"curved"`, `"bCurve"`, `"step"`, and `"straight"`.
+	connector_style : str
+		The style of the connector object. Comes from the Raphaël package.
 	orientation : str
 		Orientation of the tree in the visualization. Options are `"north"`, `"east"`,
 		`"south"`, and "`west`".
+	node_style: style.NodeStyle
+		An optional `style.NodeStyle` object. Determines what the nodes in the tree will look like.
 	"""
 	def __init__(
 			self,
