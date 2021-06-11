@@ -63,7 +63,7 @@ is useful when working with the package in Jupyter, for example. This method wil
 
 <img src="images/tutorial_tree.png" height="250" width="715" style="border: 2px solid">
 
-#### Image support
+#### Image Support and _Styling_
 You can attach an image to a node object to display it in the visualization. Here's a demo of some of the ways
 we can style a tree (wrapping TreantJS and Raphaël). First, we create three nodes with images: 
 ```
