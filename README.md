@@ -9,3 +9,7 @@ This library has `Node` and `Tree` classes in the `treeplotter.tree` module. `No
 
 This package is used in the `decitala` package (see [here](https://github.com/Luke-Poeppel/decitala)) to make `FragmentTree` diagrams, like the following one of the Greek Prosodic Feet:
 <img src="images/Prosodic_Tree.png" height="250" width="715" style="border: 2px solid">
+
+Images can be added to `Node` objects, and we can customize tree properties with connector types and orientation. 
+
+<img src="images/image_nodes.png" height="250" width="715" style="border: 2px solid">
