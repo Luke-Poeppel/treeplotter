@@ -51,33 +51,3 @@ def test_plotter(tutorial_tree):
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")
-
-n1 = Node(name="Cat", image="/Users/lukepoeppel/treeplotter/tests/static/cat_small.jpg")
-n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl_small.jpg")
-n3 = Node(name="Foe O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
-n1.add_children([n2, n3])
-
-arrow_connector = ConnectorStyle(
-	arrow_end="classic",
-	arrow_width="wide",
-	arrow_length="long"
-)
-node_style = NodeStyle(
-	background_color="#89ADF0",
-	border_radius="10px"
-)
-animal_tree = Tree(
-	root=n1,
-	connector_type="step",
-	connector_style=arrow_connector,
-	orientation="west",
-	node_style=node_style
-)
-
-create_tree_diagram(
-	tree=animal_tree,
-	save_path="/Users/lukepoeppel/treeplotter/tests/t14",
-	background_color="#cf2b2b",
-	webshot=True,
-	verbose=True
-)
