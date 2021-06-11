@@ -32,7 +32,7 @@ def tutorial_tree():
 	value_path_2 = [root.value, 1.0, 2.0, 1.0]
 	root.add_path_of_children(path=value_path_2, final_node_name="Testing overwrite")
 	
-	return Tree(root=root)
+	return Tree(root=root, connector_type="curve")
 
 def test_plotter(tutorial_tree):
 	with tempfile.TemporaryDirectory() as tmpdir:
@@ -45,7 +45,7 @@ def test_plotter(tutorial_tree):
 		for f in os.listdir(tmpdir):
 			if not(f.startswith(".")):
 				fcount += 1
-		assert fcount == 9
+		assert fcount == 10
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")

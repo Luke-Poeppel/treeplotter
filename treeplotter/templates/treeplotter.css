@@ -14,8 +14,8 @@ body { background: #fff; }
 .Treant > p { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-weight: bold; font-size: 12px; }
 .node-name { font-weight: bold;}
 
-.nodeExample1 {
-    text-align: center; /* aligning text inside node. */
+.treeNode {
+    text-align: center; 
     padding: 2px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -26,7 +26,7 @@ body { background: #fff; }
     font-family: Tahoma;
     font-size: 12px;
 }
-.nodeExample1:active { 
+.treeNode:active { 
     box-shadow: inset 1px 1px 1px rgba(0,0,0,.1); 
     margin: 1px 0 0 1px; 
     border: 2px solid #D3D3CB;
@@ -35,11 +35,11 @@ body { background: #fff; }
     line-height: 30px;
     color: #9B9B9B;
 }
-.nodeExample1:hover .node-name {
+.treeNode:hover .node-name {
     color: #8B8B8B;
     text-shadow: 1px 1px rgba(0,0,0,.15);
 }
 
-.nodeExample1 img {
+.treeNode img {
     margin-right:  10px;
 }
