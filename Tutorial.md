@@ -79,7 +79,7 @@ Beginning in v0.2.0, you can attach an image to a node object to display it in t
 ```
 This creates the following image:
 
-<img src="images/image_nodes.png" height="250" width="715" style="border: 2px solid">
+<img src="images/flipped_tree.png" height="250" width="715" style="border: 2px solid">
 
 You can change the connection type between nodes with the `connector_type` parameter in the `Tree` class,
 as above. The options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`.

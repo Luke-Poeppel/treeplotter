@@ -12,4 +12,4 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 
 Images can be added to `Node` objects, and we can customize tree properties with connector types and orientation. 
 
-<img src="images/image_nodes.png" height="250" width="715" style="border: 2px solid">
+<img src="images/flipped_tree.png" height="250" width="715" style="border: 2px solid">
