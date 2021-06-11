@@ -37,13 +37,14 @@ def get_logger(name, print_to_console=True, write_to_file=None):
 def _prepare_chart_config(tree):
 	chart_config = dict()
 	chart_config["container"] = "#treeplotter"
-	chart_config["connectors"] = tree.connector_type
-	node = {
-		"node": {
-			"HTMLclass": "treeNode"
-		}
+	connector_type_dict = {
+		"type": tree.connector_type
 	}
-	chart_config["node"] = node
+	chart_config["connectors"] = connector_type_dict
+	HTML_dict_obj = {
+		"HTMLclass": "treeNode"
+	}
+	chart_config["node"] = HTML_dict_obj
 	dumped = json.dumps(chart_config)
 	with open("chart_config.json", "w") as chart_config_file:
 		json.dump(dumped, chart_config_file)
