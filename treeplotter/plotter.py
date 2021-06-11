@@ -53,7 +53,12 @@ def _prepare_chart_config(tree):
 		json.dump(dumped, chart_config_file)
 	return
 
-def _prepare_docs_and_screenshot(path, serialized_tree, logger):
+def _prepare_docs_and_screenshot(
+		path,
+		serialized_tree,
+		webshot,
+		logger
+	):
 	with open("tree.json", "w") as json_file:
 		json.dump(serialized_tree, json_file)
 
@@ -66,24 +71,40 @@ def _prepare_docs_and_screenshot(path, serialized_tree, logger):
 	browserified_file = "/".join([path, "bundle.js"])
 	os.system(f"browserify {parse_data_file} -o {browserified_file}")
 
-	logger.info("-> Creating webshot with R...")
-	webshot_string = "webshot::webshot(url={0}, file={1}, zoom=3, selector={2})".format(
-		"'" + path + "/index.html" + "'",
-		"'" + path + "/shot.png" + "'",
-		"'" + ".Treant" + "'"
-	)
-	subprocess.call(
-		[
-			f"""Rscript -e "{webshot_string}" """
-		],
-		shell=True
-	)
+	if webshot:
+		logger.info("-> Creating webshot with R...")
+		webshot_string = "webshot::webshot(url={0}, file={1}, zoom=3, selector={2})".format(
+			"'" + path + "/index.html" + "'",
+			"'" + path + "/shot.png" + "'",
+			"'" + ".Treant" + "'"
+		)
+		subprocess.call(
+			[
+				f"""Rscript -e "{webshot_string}" """
+			],
+			shell=True
+		)
 
-def create_tree_diagram(tree, save_path=None, verbose=False):
+def create_tree_diagram(
+		tree,
+		save_path=None,
+		webshot=False,
+		verbose=False
+	):
 	"""
-	This function creates a visualization of a given :obj:`~decitala.trees.FragmentTree`
-	using the Treant.js library. If a path is provided, all the files will be stored there. Otherwise,
-	they will be stored in a tempfile for the display.
+	This function creates a visualization of a given `tree.Tree` by wrapping the TreantJS library.
+
+	Parameters
+	----------
+	tree : tree.Tree
+		A `tree.Tree` object.
+	save_path : str
+		Optional path to the directory in which all the relevant files will be saved. Default is `None`.
+	webshot : bool
+		Whether or not to invoke Rs webshot library to create a high-res screenshot of the tree.
+		Default is `False`.
+	verbose : bool
+		Whether to print logging messages in the plotting process. Useful for debugging.
 	"""
 	if verbose:
 		logger = get_logger(name=__name__, print_to_console=True)
@@ -97,8 +118,13 @@ def create_tree_diagram(tree, save_path=None, verbose=False):
 		if not(os.path.isdir(save_path)):
 			os.mkdir(save_path)
 		os.chdir(save_path)
-		_prepare_chart_config(tree)
-		_prepare_docs_and_screenshot(save_path, serialized_tree=serialized, logger=logger)
+		_prepare_chart_config(tree=tree)
+		_prepare_docs_and_screenshot(
+			path=save_path,
+			serialized_tree=serialized,
+			webshot=webshot,
+			logger=logger
+		)
 		logger.info("Done ✔")
 		return save_path
 	else:

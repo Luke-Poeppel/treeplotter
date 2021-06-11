@@ -39,6 +39,7 @@ def test_plotter(tutorial_tree):
 		create_tree_diagram(
 			tree=tutorial_tree,
 			save_path=tmpdir,
+			webshot=True,
 			verbose=False
 		)
 		fcount = 0

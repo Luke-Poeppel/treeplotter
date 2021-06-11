@@ -7,6 +7,9 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 #### Added
 - Added support for `orientation` in `Tree` objects. 
 
+#### Changed
+- WIP: The use of `R` and `webshot` is now fully optional! The user specifies `webshot=True` in `create_tree_diagram`. This will obviously fail if they don't have `R` installed. 
+
 ## [v0.2.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.2.0) June 11, 2021
 #### Added
 - Allow displaying images in the node. 
