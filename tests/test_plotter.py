@@ -4,6 +4,7 @@ import os
 
 from treeplotter.tree import Node, Tree
 from treeplotter.plotter import create_tree_diagram
+from treeplotter.style import ConnectorStyle
 
 @pytest.fixture
 def tutorial_tree():
@@ -50,3 +51,27 @@ def test_plotter(tutorial_tree):
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")
+
+n1 = Node(name="Cat", image="/Users/lukepoeppel/treeplotter/tests/static/cat_small.jpg")
+n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl_small.jpg")
+n3 = Node(name="Foe O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
+n1.add_children([n2, n3])
+
+arrow_connector = ConnectorStyle(
+	arrow_end="classic",
+	arrow_width="wide",
+	arrow_length="long"
+)
+animal_tree = Tree(
+	root=n1,
+	connector_type="step",
+	connector_style=arrow_connector,
+	orientation="west"
+)
+
+create_tree_diagram(
+	tree=animal_tree,
+	save_path="/Users/lukepoeppel/treeplotter/tests/t10",
+	webshot=True,
+	verbose=True
+)

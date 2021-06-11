@@ -17,6 +17,15 @@ import tempfile
 here = os.path.abspath(os.path.dirname(__file__))
 treant_templates = here + "/templates"
 
+def prepare_arrow(dict_in):
+	"""
+	Raphaël's arrow formatting is a bit more involved. This parsing is done here.
+	"""
+	arrow_end = dict_in["arrow_end"]
+	arrow_width = dict_in["arrow_width"]
+	arrow_length = dict_in["arrow_length"]
+	return "-".join([arrow_end, arrow_width, arrow_length])
+
 def get_logger(name, print_to_console=True, write_to_file=None):
 	"""
 	A simple helper for logging. Copied from my `decitala` package.
@@ -37,9 +46,24 @@ def get_logger(name, print_to_console=True, write_to_file=None):
 def _prepare_chart_config(tree):
 	chart_config = dict()
 	chart_config["container"] = "#treeplotter"
+
+	connector_style_pre = tree.connector_style.style()
+	connector_style = dict()
+	for key, val in connector_style_pre.items():
+		if "_" in key:
+			new_key = "-".join(key.split("_"))
+			if key == "arrow_end":
+				connector_style[new_key] = prepare_arrow(dict_in=connector_style_pre)
+			elif key in {"arrow_length" or "arrow_width"}:
+				continue
+			else:
+				connector_style[new_key] = val
+		else:
+			connector_style[key] = val
+
 	connector_type_dict = {
 		"type": tree.connector_type,
-		"style": tree.connector_style.style()
+		"style": connector_style
 	}
 	chart_config["connectors"] = connector_type_dict
 	chart_config["rootOrientation"] = tree.orientation.upper()
