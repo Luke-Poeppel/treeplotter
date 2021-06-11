@@ -69,6 +69,84 @@ def write_treant_css(path):
 	with open(path, "w") as TREANT_CSS_FILEPATH:
 		TREANT_CSS_FILEPATH.write(str(cssTextDecoded))
 
+def write_node_css(
+		background_color,
+		font_family,
+		font_size,
+		text_align,
+		width,
+		border,
+		padding,
+		border_radius,
+		path
+	):
+	NODE_CSS = """
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,
+		input,textarea,p,blockquote,th,td { margin:0; padding:0; }
+	table { border-collapse:collapse; border-spacing:0; }
+	fieldset,img { border:0; }
+	address,caption,cite,code,dfn,em,strong,th,var { font-style:normal; font-weight:normal; }
+	caption,th { text-align:left; }
+	h1,h2,h3,h4,h5,h6 { font-size:100%; font-weight:normal; }
+	q:before,q:after { content:''; }
+	abbr,acronym { border:0; }
+
+	body { background: #fff; }
+	/* optional Container STYLES */
+	.chart { height: 100%; margin: 5px; width: 100%; }
+	.Treant > .node {  }
+	.Treant > p {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+					Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight: bold;
+		font-size: 12px;
+	}
+	.node-name { font-weight: bold;}
+
+	.treeNode {
+		text-align: {{ text_align }};
+		padding: {{ padding }};
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: {{ border_radius }};
+		background-color: {{ background_color }};
+		border: {{ border }};
+		width: {{ width }};
+		font-family: {{ font_family }};
+		font-size: {{ font_size }};
+	}
+	.treeNode:active {
+		box-shadow: inset 1px 1px 1px rgba(0,0,0,.1);
+		margin: 1px 0 0 1px;
+		border: 2px solid #D3D3CB;
+	}
+	.node.big-commpany .node-name {
+		line-height: 30px;
+		color: #9B9B9B;
+	}
+	.treeNode:hover .node-name {
+		color: #8B8B8B;
+		text-shadow: 1px 1px rgba(0,0,0,.15);
+	}
+
+	.treeNode img {
+		margin-right:  10px;
+	}
+	"""
+	template = Template(NODE_CSS)
+	with open(path, "w") as node_filepath:
+		rendered = template.render(
+			background_color=background_color,
+			font_family=font_family,
+			font_size=font_size,
+			text_align=text_align,
+			width=width,
+			border=border,
+			padding=padding,
+			border_radius=border_radius,
+		)
+		node_filepath.write(rendered)
+
 @dataclass
 class ConnectorStyle:
 	"""
