@@ -4,7 +4,7 @@ import os
 
 from treeplotter.tree import Node, Tree
 from treeplotter.plotter import create_tree_diagram
-from treeplotter.style import ConnectorStyle
+from treeplotter.style import ConnectorStyle, NodeStyle
 
 @pytest.fixture
 def tutorial_tree():
@@ -62,16 +62,21 @@ arrow_connector = ConnectorStyle(
 	arrow_width="wide",
 	arrow_length="long"
 )
+node_style = NodeStyle(
+	background_color="#89ADF0",
+	border_radius="10px"
+)
 animal_tree = Tree(
 	root=n1,
 	connector_type="step",
 	connector_style=arrow_connector,
-	orientation="west"
+	orientation="west",
+	node_style=node_style
 )
 
 create_tree_diagram(
 	tree=animal_tree,
-	save_path="/Users/lukepoeppel/treeplotter/tests/t12",
+	save_path="/Users/lukepoeppel/treeplotter/tests/t14",
 	background_color="#cf2b2b",
 	webshot=True,
 	verbose=True

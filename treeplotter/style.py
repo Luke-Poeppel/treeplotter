@@ -131,6 +131,7 @@ def write_node_css(
 
 	.treeNode img {
 		margin-right:  10px;
+		margin-left: 10px;
 	}
 	"""
 	template = Template(NODE_CSS)
