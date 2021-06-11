@@ -13,7 +13,10 @@ from collections import deque
 from wand.image import Image
 
 from .plotter import create_tree_diagram
-from .style import ConnectorStyle
+from .style import (
+	ConnectorStyle,
+	NodeStyle
+)
 
 class NodeException(Exception):
 	pass
@@ -163,11 +166,13 @@ class Tree:
 			connector_type="curved",
 			connector_style=ConnectorStyle(),
 			orientation="north",
+			node_style=NodeStyle()
 		):
 		self.root = root
 		self.connector_type = connector_type
 		self.connector_style = connector_style
 		self.orientation = orientation
+		self.node_style = node_style
 
 	def __repr__(self):
 		return '<tree.Tree nodes={}>'.format(self.size())

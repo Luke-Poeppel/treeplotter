@@ -16,7 +16,8 @@ import tempfile
 
 from .style import (
 	write_index_html,
-	write_treant_css
+	write_treant_css,
+	write_node_css
 )
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -85,6 +86,7 @@ def _prepare_chart_config(tree):
 
 def _prepare_docs_and_screenshot(
 		path,
+		tree,
 		serialized_tree,
 		background_color,
 		webshot,
@@ -107,9 +109,17 @@ def _prepare_docs_and_screenshot(
 	write_treant_css(path=path + "/" + "Treant.css")
 
 	logger.info("-> Writing Node CSS file...")
-	# write_node_css(
-	# 	*
-	# )
+	write_node_css(
+		background_color=tree.node_style.background_color,
+		font_family=tree.node_style.font_family,
+		font_size=tree.node_style.font_size,
+		text_align=tree.node_style.text_align,
+		width=tree.node_style.width,
+		border=tree.node_style.border,
+		padding=tree.node_style.padding,
+		border_radius=tree.node_style.border_radius,
+		path=path + "/" + "treeplotter.css"
+	)
 
 	logger.info("-> Running browserify...")
 	parse_data_file = "/".join([path, "parse_data.js"])
@@ -169,6 +179,7 @@ def create_tree_diagram(
 		_prepare_chart_config(tree=tree)
 		_prepare_docs_and_screenshot(
 			path=save_path,
+			tree=tree,
 			serialized_tree=serialized,
 			background_color=background_color,
 			webshot=webshot,
