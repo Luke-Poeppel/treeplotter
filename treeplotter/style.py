@@ -13,8 +13,15 @@ class ConnectorStyle:
 	"""
 	Wrapper for the RaphaëlJS connector style between Nodes. See the following link for a complete
 	description of the available attributes: http://raphaeljs.com/reference.html#Element.attr.
+
+	Allowed values for `arrow_end`: `"classic"`, `"block"`, "`open"`, "`oval"`, "`diamond"`.
+	Allowed values for `arrow_width`: "`wide"`, "`narrow"`, "`midium"`.
+	Allowed values for `arrow_length`: "`long"`, "`short"`, "`midium"`.
 	"""
 	stroke: str = "black"
+	arrow_end: str = None
+	arrow_width: str = None
+	arrow_length: str = None
 	cursor: str = None
 	fill: str = None
 	fill_opacity: int = None
