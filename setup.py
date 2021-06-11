@@ -36,6 +36,7 @@ setup(
 	package_data={"treeplotter": ["VERSION"]},
 	install_requires=[
 		"click",
+		"cssutils",
 		"flake8",
 		"jsonpickle",
 		"matplotlib",

@@ -18,13 +18,23 @@ def write_treant_css(background_color, path):
 	.Treant.Treant-loaded .node,
 	.Treant.Treant-loaded .pseudo { visibility: visible; }
 	.Treant > .pseudo { width: 0; height: 0; border: none; padding: 0; }
-	.Treant .collapse-switch { width: 3px; height: 3px; display: block; border: 1px solid black; position: absolute; top: 1px; right: 1px; cursor: pointer; } # noqa
+	.Treant .collapse-switch {
+		width: 3px;
+		height: 3px;
+		display: block;
+		border: 1px solid black;
+		position: absolute;
+		top: 1px;
+		right: 1px;
+		cursor: pointer;
+	}
 	.Treant .collapsed .collapse-switch { background-color: %s; }
 	.Treant > .node img {	border: none; float: left; }
 	""" % background_color
 	sheet = cssutils.parseString(TREANT_CSS)
+	cssTextDecoded = sheet.cssText.decode("ascii")
 	with open(path, "w") as TREANT_CSS_FILEPATH:
-		TREANT_CSS_FILEPATH.write(str(sheet.cssText))
+		TREANT_CSS_FILEPATH.write(str(cssTextDecoded))
 
 @dataclass
 class ConnectorStyle:
