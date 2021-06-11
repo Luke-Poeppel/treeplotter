@@ -6,7 +6,7 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 ## [v0.3.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.3.0) June 11, 2021
 #### Added
 - Added support for `orientation` in `Tree` objects. 
-- WIP: The package now has two install parameters: `treeplotter install-assist --standard` and `treeplotter install-assist --screenshot`. This allows the user to more carefully choose what they need to use the package. Added an `Installation.md` file with updated details. 
+- The package now has two install parameters: `treeplotter install-assist --standard` and `treeplotter install-assist --screenshot`. This allows the user to more carefully choose what they need to use the package. Added an `Installation.md` file with updated details. 
 
 #### Changed
 - The use of `R` and `webshot` is now fully optional! The user specifies `webshot=True` in `create_tree_diagram`. This will obviously fail if they don't have `R` installed. 
