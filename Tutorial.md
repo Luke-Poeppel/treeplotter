@@ -45,14 +45,14 @@ There are several other properties and methods for working with trees in the pac
 
 #### Making a Tree Diagram
 We now have our `tree` object in the package. But who cares? We want to see it! To do so, use the 
-`plotter.make_tree_diagram` function. Pass our `tree` to the `tree` parameter. The `save_path` is a path 
-to a **folder which will be created upon running the function**. For instance, if I wanted to save the visualization to
-a folder called `mytree` in my home directory, I would use:
+`plotter.make_tree_diagram` function. Pass our `tree` to the `tree` parameter. If you'd like to save a screenshot of the tree 
+(assuming you've followed the proper install instructions in Installation.md), pass `webshot=True` to the function. The `save_path` is a path to a **folder which will be created upon running the function**. For instance, if I wanted to save the visualization to a folder called `mytree` in my home directory, I would use:
 ```
 >>> from treeplotter.plotter import make_tree_diagram
 >>> make_tree_diagram(
 ...     tree=tree,
 ...     save_path="/Users/lukepoeppel/mytree",
+...     webshot=True,
 ...     verbose=True
 ... )
 >>> # This will display some logs and save an image of the tree to your desired directory. 
