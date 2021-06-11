@@ -19,8 +19,15 @@ def treeplotter():
 
 @treeplotter.command()
 @click.option("--force", default=False)
-def install_assist(force):
+@click.option("--standard", default=False)
+@click.option("--screenshot", default=False)
+def install_assist(force, standard, screenshot):
 	"""
 	Installation assistant for MacOS.
 	"""
-	run(install=True, force=force)
+	run(
+		install=True,
+		force=force,
+		standard=standard,
+		screenshot=screenshot
+	)
