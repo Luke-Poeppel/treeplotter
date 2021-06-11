@@ -3,9 +3,13 @@ All important changes to the treeplotter package will be documented here.
 
 The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.4.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.0) ???
+## [v0.4.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.0) June 11, 2021
 #### Added
-- Upgraded styling system for the package. 
+- Upgraded styling system for the package with the `style.py` module. Created `NodeStyle` and `ConnectorStyle` objects to be used with the `Tree`. We can now customize several different features of the document, tree, and nodes. 
+
+#### Changed
+- All of the CSS and HTML templates (exluding the libraries, of course) are gone. They now come from strings (parsed by 
+a jinja2 template) made in the style module. 
 
 ## [v0.3.1](https://github.com/Luke-Poeppel/treeplotter/tree/v0.3.1) June 11, 2021
 #### Fixed
