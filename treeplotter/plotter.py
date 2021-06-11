@@ -14,7 +14,10 @@ import subprocess
 import shutil
 import tempfile
 
-from .style import write_treant_css
+from .style import (
+	write_index_html,
+	write_treant_css
+)
 
 here = os.path.abspath(os.path.dirname(__file__))
 treant_templates = here + "/templates"
@@ -94,11 +97,14 @@ def _prepare_docs_and_screenshot(
 	for this_file in os.listdir(treant_templates):
 		shutil.copyfile(treant_templates + "/" + this_file, path + "/" + this_file)
 
-	logger.info("-> Writing Treant CSS file...")
-	write_treant_css(
+	logger.info("-> Writing index.html...")
+	write_index_html(
 		background_color=background_color,
-		path=path + "/" + "Treant.css"
+		path=path + "/" + "index.html"
 	)
+
+	logger.info("-> Writing Treant CSS file...")
+	write_treant_css(path=path + "/" + "Treant.css")
 
 	logger.info("-> Running browserify...")
 	parse_data_file = "/".join([path, "parse_data.js"])

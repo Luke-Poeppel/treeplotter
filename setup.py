@@ -39,7 +39,7 @@ setup(
 		"cssutils",
 		"flake8",
 		"jsonpickle",
-		"matplotlib",
+		"jinja2",
 		"pre-commit",
 		"pytest",
 		"Wand",

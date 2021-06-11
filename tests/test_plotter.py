@@ -71,7 +71,8 @@ animal_tree = Tree(
 
 create_tree_diagram(
 	tree=animal_tree,
-	save_path="/Users/lukepoeppel/treeplotter/tests/t10",
+	save_path="/Users/lukepoeppel/treeplotter/tests/t12",
+	background_color="#cf2b2b",
 	webshot=True,
 	verbose=True
 )

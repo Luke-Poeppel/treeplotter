@@ -9,8 +9,42 @@
 import cssutils
 
 from dataclasses import dataclass, asdict
+from jinja2 import Template
 
-def write_treant_css(background_color, path):
+def write_index_html(background_color, path):
+	HTML = """
+	<!DOCTYPE html>
+	<html>
+		<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width">
+		<title> Fragment Tree </title>
+		<link rel="stylesheet" href="Treant.css">
+		<link rel="stylesheet" href="treeplotter.css">
+
+	</head>
+	<body>
+		<style>
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background-color: {{color}};
+			}
+			</style>
+		<div class="chart" id="treeplotter"></div>
+		<script src="raphael.js"></script>
+		<script src="Treant.min.js"></script>
+		<script src="bundle.js"></script>
+	</body>
+	</html>
+	"""
+	template = Template(HTML)
+	with open(path, "w") as index_filepath:
+		index_filepath.write(template.render(color=background_color))
+
+def write_treant_css(path):
 	TREANT_CSS = """
 	.Treant { position: relative; overflow: hidden; padding: 0 !important; }
 	.Treant > .node,
@@ -28,9 +62,8 @@ def write_treant_css(background_color, path):
 		right: 1px;
 		cursor: pointer;
 	}
-	.Treant .collapsed .collapse-switch { background-color: %s; }
 	.Treant > .node img {	border: none; float: left; }
-	""" % background_color
+	"""
 	sheet = cssutils.parseString(TREANT_CSS)
 	cssTextDecoded = sheet.cssText.decode("ascii")
 	with open(path, "w") as TREANT_CSS_FILEPATH:
