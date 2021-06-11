@@ -64,17 +64,50 @@ is useful when working with the package in Jupyter, for example. This method wil
 <img src="images/tutorial_tree.png" height="250" width="715" style="border: 2px solid">
 
 #### Image support
-Beginning in v0.2.0, you can attach an image to a node object to display it in the visualization. Here we display
-three images in an eastward-facing tree (see `orientation`) with a `"step"` connector type:
+You can attach an image to a node object to display it in the visualization. Here's a demo of some of the ways
+we can style a tree (wrapping TreantJS and Raphaël). First, we create three nodes with images: 
 ```
 >>> n1 = Node(name="Cat", image="/Users/lukepoeppel/treeplotter/tests/static/cat_small.jpg")
 >>> n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl_small.jpg")
->>> n3 = Node(name="Foe O' Coat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
+>>> n3 = Node(name="Foe O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
 >>> n1.add_children([n2, n3])
->>> animal_tree = Tree(root=n1, connector_type="step", orientation="east")
+```
+We would like the connectors between the nodes to be step-wise and the ends to be arrows. We can do this
+by using `ConnectorStyle`:
+```
+>>> from treeplotter.style import ConnectorStyle
+>>> arrow_connector = ConnectorStyle(
+...     arrow_end="classic", # these come from the Raphaël documentation. 
+...     arrow_width="wide",
+...     arrow_length="long"
+)
+```
+We also want the nodes in our tree to be baby-blue with a border radius of 10px. We can customize the node's style
+using `NodeStyle`:
+```
+>>> from treeplotter.style import NodeStyle
+>>> node_style = NodeStyle(
+...     background_color="#89ADF0",
+...     border_radius="10px"
+... )
+```
+Let's now create our tree. There are two final customizations allowed in the `Tree` class: the `orientation` and `connector_type` (options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`.). We can pass all of the information to the tree as follows:
+```
+>>> animal_tree = Tree(
+...     root=n1,
+...     connector_type="step",
+...     connector_style=arrow_connector,
+...     orientation="west",
+...     node_style=node_style
+... )
+```
+Now when we create our diagram, we wish the background color of the index.html and screenshot to be red. We
+can do this by setting a hex color in the `background_color` parameter:
+```
 >>> create_tree_diagram(
 ...     tree=animal_tree,
-...     save_path="/Users/lukepoeppel/treeplotter/tests/t6",
+...     save_path="/Users/lukepoeppel/treeplotter/tests/t14",
+...     background_color="#cf2b2b",
 ...     webshot=True,
 ...     verbose=True
 ... )
@@ -84,4 +117,4 @@ This creates the following image:
 <img src="images/styled_tree.png" height="250" width="715" style="border: 2px solid">
 
 You can change the connection type between nodes with the `connector_type` parameter in the `Tree` class,
-as above. The options are `"curve"`, `"bCurve"`, `"step"`, and `"straight"`.
+as above. 
