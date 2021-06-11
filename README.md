@@ -1,6 +1,6 @@
 # `treeplotter`
 [![Actions Status](https://github.com/Luke-Poeppel/treeplotter/workflows/Build/badge.svg)](https://github.com/Luke-Poeppel/treeplotter/actions)
-![img](https://img.shields.io/badge/semver-0.3.0-green)
+![img](https://img.shields.io/badge/semver-0.3.1-green)
 
 Tree plotting is really hard in Python. This package aims to make the process easier. It wraps the TreantJS library to plot trees and saves them to a rendered HTML file. This HTML file is then also exported to a high-res PNG by wrapping R's ``webshot`` package. The package requires some complicated installs, but this is the price to pay to not use any R, Javascript, or CSS ;)
 
@@ -14,6 +14,3 @@ This package is used in the `decitala` package (see [here](https://github.com/Lu
 Images can be added to `Node` objects, and we can customize tree properties with connector types and orientation. 
 
 ![](https://github.com/Luke-Poeppel/treeplotter/blob/master/images/flipped_tree.png)
-
-<!-- <img src="images/Prosodic_Tree.png" height="250" width="715" style="border: 2px solid"> -->
-<!-- <img src="images/flipped_tree.png" height="250" width="715" style="border: 2px solid"> -->
