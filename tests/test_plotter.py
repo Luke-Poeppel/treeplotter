@@ -49,3 +49,9 @@ def test_plotter(tutorial_tree):
 		assert os.path.isfile(tmpdir + "/tree.json")
 		assert os.path.isfile(tmpdir + "/index.html")
 		assert os.path.isfile(tmpdir + "/shot.png")
+
+# create_tree_diagram(
+# 	tutorial_tree(),
+# 	"/Users/lukepoeppel/treeplotter/tests/t4",
+# 	True
+# )
