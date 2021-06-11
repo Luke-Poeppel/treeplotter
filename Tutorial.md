@@ -64,16 +64,18 @@ is useful when working with the package in Jupyter, for example. This method wil
 <img src="images/tutorial_tree.png" height="250" width="715" style="border: 2px solid">
 
 #### Image support
-Beginning in v0.2.0, you can attach an image to a node object to display it in the visualization. 
+Beginning in v0.2.0, you can attach an image to a node object to display it in the visualization. Here we display
+three images in an eastward-facing tree (see `orientation`) with a `"step"` connector type:
 ```
 >>> n1 = Node(name="Cat", image="/Users/lukepoeppel/treeplotter/tests/static/cat_small.jpg")
 >>> n2 = Node(name="Friend O' Cat", image="/Users/lukepoeppel/treeplotter/tests/static/owl_small.jpg")
 >>> n3 = Node(name="Foe O' Coat", image="/Users/lukepoeppel/treeplotter/tests/static/rabbit_small.jpg")
 >>> n1.add_children([n2, n3])
->>> animal_tree = Tree(root=n1, connector_type="curve")
+>>> animal_tree = Tree(root=n1, connector_type="step", orientation="east")
 >>> create_tree_diagram(
 ...     tree=animal_tree,
 ...     save_path="/Users/lukepoeppel/treeplotter/tests/t6",
+...     webshot=True,
 ...     verbose=True
 ... )
 ```
