@@ -13,13 +13,16 @@ from setuptools import setup, find_packages
 with open(os.path.join("treeplotter", "VERSION")) as version:
 	__version__ = version.readline()
 
+with open('README.md') as f:
+	long_description = f.read()
+
 setup(
 	name="treeplotter",
 	version=__version__,
 	author="Luke Poeppel",
 	author_email="luke.poeppel@gmail.com",
 	description="Python package for tree plotting.",
-	long_description="Python package for tree plotting.",
+	long_description=long_description,
 	long_description_content_type="text/markdown",
 	url="https://github.com/Luke-Poeppel/treeplotter",
 	packages=find_packages(),
