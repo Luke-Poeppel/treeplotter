@@ -34,6 +34,20 @@ def get_logger(name, print_to_console=True, write_to_file=None):
 
 	return logger
 
+def _prepare_chart_config(tree):
+	chart_config = dict()
+	chart_config["container"] = "#treeplotter"
+	chart_config["connectors"] = tree.connector_type
+	node = {
+		"node": {
+			"HTMLclass": "treeNode"
+		}
+	}
+	chart_config["node"] = node
+	with open("chart_config.json", "w") as chart_config_file:
+		json.dump(chart_config, chart_config_file)
+	return
+
 def _prepare_docs_and_screenshot(path, serialized_tree, logger):
 	with open("tree.json", "w") as json_file:
 		json.dump(serialized_tree, json_file)
@@ -78,6 +92,7 @@ def create_tree_diagram(tree, save_path=None, verbose=False):
 		if not(os.path.isdir(save_path)):
 			os.mkdir(save_path)
 		os.chdir(save_path)
+		_prepare_chart_config(tree)
 		_prepare_docs_and_screenshot(save_path, serialized_tree=serialized, logger=logger)
 		logger.info("Done ✔")
 		return save_path
