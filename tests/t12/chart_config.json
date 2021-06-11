@@ -1,1 +1,0 @@
-"{\"container\": \"#treeplotter\", \"connectors\": {\"type\": \"step\", \"style\": {\"stroke\": \"black\", \"arrow-end\": \"classic-wide-long\", \"arrow-width\": \"wide\"}}, \"rootOrientation\": \"WEST\", \"node\": {\"HTMLclass\": \"treeNode\"}}"
