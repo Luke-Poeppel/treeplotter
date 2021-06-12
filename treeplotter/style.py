@@ -6,8 +6,6 @@
 #
 # Location: Kent, 2021
 ####################################################################################################
-import cssutils
-
 from dataclasses import dataclass, asdict
 from jinja2 import Template
 
@@ -64,10 +62,9 @@ def write_treant_css(path):
 	}
 	.Treant > .node img {	border: none; float: left; }
 	"""
-	sheet = cssutils.parseString(TREANT_CSS)
-	cssTextDecoded = sheet.cssText.decode("ascii")
-	with open(path, "w") as TREANT_CSS_FILEPATH:
-		TREANT_CSS_FILEPATH.write(str(cssTextDecoded))
+	template = Template(TREANT_CSS)
+	with open(path, "w") as css_filepath:
+		css_filepath.write(template.render())
 
 def write_node_css(
 		background_color,
