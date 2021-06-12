@@ -36,14 +36,17 @@ setup(
 	package_data={"treeplotter": ["VERSION"]},
 	install_requires=[
 		"click",
-		"cssutils",
-		"flake8",
 		"jsonpickle",
 		"jinja2",
-		"pre-commit",
-		"pytest",
 		"Wand",
 	],
+	extras_require={
+		"dev": [
+			"flake8",
+			"pre-commit",
+			"pytest",
+		]
+	},
 	entry_points={
 		"console_scripts": [
 			"treeplotter = treeplotter.cli:treeplotter"
