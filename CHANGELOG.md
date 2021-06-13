@@ -3,6 +3,8 @@ All important changes to the treeplotter package will be documented here.
 
 The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.5.0) ???
+
 ## [v0.4.1](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.1) June 12, 2021
 #### Fixed
 - Fixed typo in the tutorial (`make_tree_diagram` instead of `create_tree_diagram`).
