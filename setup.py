@@ -6,19 +6,16 @@
 #
 # Location: Kent, CT 2021
 ####################################################################################################
-import os
-
 from setuptools import setup, find_packages
 
-with open(os.path.join(os.path.dirname(__file__), "treeplotter", "VERSION")) as version:
-	__version__ = version.readline()
+VERSION = "0.4.3"
 
 with open('README.md') as f:
 	long_description = f.read()
 
 setup(
 	name="treeplotter",
-	version=__version__,
+	version=VERSION,
 	author="Luke Poeppel",
 	author_email="luke.poeppel@gmail.com",
 	description="Python package for tree plotting.",

@@ -3,6 +3,10 @@ All important changes to the treeplotter package will be documented here.
 
 The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.4.3](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.3) June 19, 2021
+#### Fixed
+- SECOND fix of the version issue. Removing `VERSION` file entirely. 
+
 ## [v0.4.2](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.2) June 19, 2021
 #### Fixed
 - Install was broken due to faulty version filepath. 
