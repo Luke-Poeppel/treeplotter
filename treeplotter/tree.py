@@ -104,13 +104,13 @@ class Node:
 		return
 
 	def remove_child(self, child_node):
-		if child_node.item.value not in self.children:
+		if child_node not in self.children:
 			raise NodeException("This parent does not have that child.")
-		self.children.remove(child_node.item.value)
+		self.children.remove(child_node)
 		return
 
 	def remove_children(self, children_nodes):
-		for this_child in children_nodes:
+		for this_child in tuple(children_nodes):
 			try:
 				self.remove_child(this_child)
 			except KeyError:
