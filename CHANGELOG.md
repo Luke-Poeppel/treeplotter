@@ -3,6 +3,13 @@ All important changes to the treeplotter package will be documented here.
 
 The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0](https://github.com/Luke-Poeppel/treeplotter/tree/v0.5.0) September 20, 2021
+#### Added
+- Three methods for querying children: `get_child_by_name`, `get_child_by_name_depth` (a depth-first approach), and `get_child_by_name_breadth` (a breadth-first approach). All three were contributed by Ricardo Reis. 
+
+#### Fixed
+- Method for removing children was erroneously based on value, not the node itself. Bugfix provided by Ricardo Reis. 
+
 ## [v0.4.3](https://github.com/Luke-Poeppel/treeplotter/tree/v0.4.3) June 19, 2021
 #### Fixed
 - SECOND fix of the version issue. Removing `VERSION` file entirely. 

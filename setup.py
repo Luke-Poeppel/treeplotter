@@ -8,7 +8,7 @@
 ####################################################################################################
 from setuptools import setup, find_packages
 
-VERSION = "0.4.3"
+VERSION = "0.5.0"
 
 with open('README.md') as f:
 	long_description = f.read()
