@@ -132,6 +132,48 @@ class Node:
 		else:
 			return None
 
+	def get_child_by_name(self, name):
+		"""
+		METHOD CONTRIBUTED BY RICARDO REIS. Retrieves a child
+		node by name.
+		"""
+		for this_child in self.children:
+			if this_child.name == name:
+				return this_child
+		else:
+			return None
+
+	def get_child_by_name_depth(self, name):
+		"""
+		METHOD CONTRIBUTED BY RICARDO REIS. Retrieves a child
+		node by name via depth-first search.
+		"""
+		for this_child in self.children:
+			if this_child.name == name:
+				return this_child
+			else:
+				res = this_child.get_child_by_name_depth(name)
+				if res:
+					return res
+		else:
+			return None
+
+	def get_child_by_name_breadth(self, name):
+		"""
+		METHOD CONTRIBUTED BY RICARDO REIS. Retrieves a child
+		node by name via breadth-first search.
+		"""
+		for this_child in self.children:
+			if this_child.name == name:
+				return this_child
+		else:
+			for this_child in self.children:
+				res = this_child.get_child_by_name_breadth(name)
+				if res:
+					return res
+			else:
+				return None
+
 	@property
 	def num_children(self) -> int:
 		return len(self.children)
